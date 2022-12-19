@@ -10,14 +10,14 @@
         <ul class="sidebar-menu">
             <li class="menu-header">Main Menu</li>
             <li class="@stack('dashboard')">
-                <a class="nav-link" href="{{ url('admin') }}">
+                <a class="nav-link" href="{{ route('dashboard') }}">
                     <i class="fas fa-fire"></i>
                     <span>Dashboard</span>
                 </a>
             </li>
 
             <li class="@stack('users')">
-                <a class="nav-link" href="{{ url('users') }}">
+                <a class="nav-link" href="{{ route('users') }}">
                     <i class="fas fa-fire"></i>
                     <span>Users</span>
                 </a>

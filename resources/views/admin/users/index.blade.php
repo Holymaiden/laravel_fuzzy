@@ -28,7 +28,7 @@ active
                     <div class="card-header">
                         <h4></h4>
                         <div class="card-header-form">
-                            {!! Helper::btn_create($title) !!}
+                            {!! Helper::btn_create() !!}
                         </div>
                     </div>
                     <div class="card-body">
@@ -40,7 +40,6 @@ active
                                 <thead>
                                     <tr>
                                         <th width="8%">No</th>
-                                        <th>No. Anggota</th>
                                         <th>Name</th>
                                         <th>Username</th>
                                         <th>Email</th>

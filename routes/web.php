@@ -3,21 +3,17 @@
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\Auth\LoginController as Auths;
-
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Redis;
 
 Route::get('/', function () {
-    return view('welcome');
+    return Redirect::route('dashboard');
 });
 
 // Route Auth
 Route::get('/auth/login', [Auths::class, 'index']);
 Route::post('/auth/login', [Auths::class, 'login'])->name('login');
 Route::get('/auth/logout', [Auths::class, 'logout'])->name('logout');
-
-// Route User
-Route::group(['prefix' => '',  'namespace' => 'App\Http\Controllers\Apps',  'middleware' => ['web']], function () {
-    Route::get('/', 'HomeController@index')->name('home');
-});
 
 // Route Admin
 Route::group(['prefix' => '',  'namespace' => 'App\Http\Controllers\Admin', 'middleware' => ['auth']], function () {
