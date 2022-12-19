@@ -39,8 +39,13 @@ class AppServiceProvider extends ServiceProvider
         });
 
         $models = array(
+            'Classes',
+            'Evaluation',
             'Role',
+            'SchoolYear',
+            'Student',
             'User',
+            'Value',
         );
 
         foreach ($models as $model) {
