@@ -37,23 +37,22 @@ class StudentController extends Controller
     {
         $jml = $request->jml == '' ? config('constants.PAGINATION') : $request->jml;
         $title = $this->title;
-        $data = Student::when($request->input('cari'), function ($query) use ($request) {
+        $tahun = $request->tahun == '' ? 'is not null' : '="' . $request->tahun . '"';
+        $kelas = $request->kelas == '' ? 'is not null' : '="' . $request->kelas . '"';
+        $data = Student::whereHas('value', function ($q) use ($tahun, $kelas) {
+            $q->whereRaw('school_year_id ' . $tahun)->whereRaw('class_id ' . $kelas);
+        })->with('value', function ($q) use ($tahun, $kelas) {
+            $q->whereRaw('school_year_id ' . $tahun)->whereRaw('class_id ' . $kelas);
+        })->when($request->input('cari'), function ($query) use ($request) {
             $query->where('name', 'like', "%{$request->input('cari')}%")
                 ->orWhere("nisn", "like", "%{$request->input('cari')}%")
                 ->orWhere("nis", "like", "%{$request->input('cari')}%");
         })
             ->paginate($jml);
 
-
-        // $categories = Categories::whereHas('products', function ($query) use ($searchString){
-        //     $query->where('name', 'like', '%'.$searchString.'%');
-        // })
-        // ->with(['products' => function($query) use ($searchString){
-        //     $query->where('name', 'like', '%'.$searchString.'%');
-        // }])->get();
-
         $view = view('admin.' . $this->title . '.data', compact('data', 'title'))->with('i', ($request->input('page', 1) -
             1) * $jml)->render();
+
         return response()->json([
             "total_page" => $data->lastpage(),
             "total_data" => $data->total(),

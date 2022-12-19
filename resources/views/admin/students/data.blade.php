@@ -4,10 +4,16 @@
     <td>{{ $v->name }}</td>
     <td>{{ $v->nisn }}</td>
     <td>{{ $v->nis }}</td>
-    <td>{{ $v->value->classes->name }}</td>
     <td>{{ $v->jkl }}</td>
-    <td>
-        {!! Helper::btn_action('1','1',$v->id) !!}
+    <td><a onclick="editForm(' . $id . ','{{$v->value->school_year_id}}','{{$v->value->class_id}}')" class="">
+            <button type="button" class="btn btn-icon btn-round btn-warning btn-sm">
+                <i class="fa fa-pencil-alt"></i>
+            </button>
+        </a> <a href="javascript:void(0)" data-toggle="tooltip" data-id="' . $id . '" title="Delete" class="deleteData">
+            <button type="button" class="btn btn-icon btn-round btn-danger btn-sm">
+                <i class="fa fa-trash-alt"></i>
+            </button>
+        </a>'
     </td>
 </tr>
 @endforeach

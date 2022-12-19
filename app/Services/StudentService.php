@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Models\Value;
 use App\Repositories\Contracts\StudentContract as StudentRepo;
 use App\Services\Contracts\StudentContract;
 
@@ -45,6 +46,12 @@ class StudentService implements StudentContract
     public function update($request, $id)
     {
         $input = $request->all();
+
+        $value = Value::where('id', $input['idValue'])->first();
+        $value->school_year_id = $input['school_year_id'];
+        $value->class_id = $input['class_id'];
+        $value->save();
+
         return $this->contractRepo->update($input, $id);
     }
 

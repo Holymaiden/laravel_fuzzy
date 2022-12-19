@@ -18,4 +18,9 @@ class StudentRepository extends BaseRepository implements StudentContract
     {
         $this->model = $student->whereNotNull('id');
     }
+
+    public function show($id)
+    {
+        return $this->model->with('value')->first();
+    }
 }
