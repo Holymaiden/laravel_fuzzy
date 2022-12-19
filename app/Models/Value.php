@@ -9,16 +9,14 @@ class Value extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'user_id',
+        'student_id',
         'class_id',
         'school_year_id',
-        'evaluation_id',
-        'value',
     ];
 
-    public function user()
+    public function student()
     {
-        return $this->hasOne('App\Models\User', 'id', 'user_id');
+        return $this->hasOne('App\Models\Student', 'id', 'student_id');
     }
 
     public function classes()
@@ -33,6 +31,6 @@ class Value extends Model
 
     public function evaluation()
     {
-        return $this->hasOne('App\Models\Evaluation', 'id', 'evaluation_id');
+        return $this->hasMany('App\Models\StudentEvaluation', 'id', 'evaluation_id');
     }
 }

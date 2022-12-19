@@ -13,11 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('values', function (Blueprint $table) {
+        Schema::create('student_evaluation', function (Blueprint $table) {
             $table->id();
-            $table->integer("student_id");
-            $table->integer("class_id");
-            $table->integer("school_year_id");
+            $table->integer('value_id');
+            $table->integer('evaluation_id');
+            $table->integer('value');
             $table->timestamps();
         });
     }
@@ -29,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('values');
+        Schema::dropIfExists('student_evaluation');
     }
 };

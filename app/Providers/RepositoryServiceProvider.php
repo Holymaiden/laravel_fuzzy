@@ -29,6 +29,7 @@ class RepositoryServiceProvider extends ServiceProvider
             'Role',
             'SchoolYear',
             'Student',
+            'StudentEvaluation',
             'User',
             'Value',
         );

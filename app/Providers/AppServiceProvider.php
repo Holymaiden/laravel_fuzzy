@@ -44,6 +44,7 @@ class AppServiceProvider extends ServiceProvider
             'Role',
             'SchoolYear',
             'Student',
+            'StudentEvaluation',
             'User',
             'Value',
         );

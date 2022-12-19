@@ -38,6 +38,15 @@ Route::group(['prefix' => '',  'namespace' => 'App\Http\Controllers\Admin', 'mid
             Route::put('/{id}', 'UserController@update')->name('users.update');
             Route::delete('/{id}', 'UserController@destroy')->name('users.delete');
         });
+
+        Route::group(['prefix' => '/students'], function () {
+            Route::get('/', 'StudentController@index')->name('students');
+            Route::get('/data', 'StudentController@data')->name('students.data');
+            Route::post('/store', 'StudentController@store')->name('students.store');
+            Route::get('/{id}/edit', 'StudentController@edit')->name('students.edit');
+            Route::put('/{id}', 'StudentController@update')->name('students.update');
+            Route::delete('/{id}', 'StudentController@destroy')->name('students.delete');
+        });
     });
 });
 
