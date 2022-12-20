@@ -37,6 +37,13 @@
                 </a>
             </li>
 
+            <li class="@stack('evaluations')">
+                <a class="nav-link" href="{{ route('evaluations') }}">
+                    <i class="fas fa-fire"></i>
+                    <span>Evaluasi</span>
+                </a>
+            </li>
+
             <li class="@stack('users')">
                 <a class="nav-link" href="{{ route('users') }}">
                     <i class="fas fa-fire"></i>

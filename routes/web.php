@@ -30,6 +30,15 @@ Route::group(['prefix' => '',  'namespace' => 'App\Http\Controllers\Admin', 'mid
             Route::delete('/{id}', 'ClassesController@destroy')->name('classes.delete');
         });
 
+        Route::group(['prefix' => '/evaluations'], function () {
+            Route::get('/', 'EvaluationController@index')->name('evaluations');
+            Route::get('/data', 'EvaluationController@data')->name('evaluations.data');
+            Route::post('/store', 'EvaluationController@store')->name('evaluations.store');
+            Route::get('/{id}/edit', 'EvaluationController@edit')->name('evaluations.edit');
+            Route::put('/{id}', 'EvaluationController@update')->name('evaluations.update');
+            Route::delete('/{id}', 'EvaluationController@destroy')->name('evaluations.delete');
+        });
+
         Route::group(['prefix' => '/school-years'], function () {
             Route::get('/', 'SchoolYearController@index')->name('school-years');
             Route::get('/data', 'SchoolYearController@data')->name('school-years.data');

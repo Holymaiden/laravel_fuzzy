@@ -3,18 +3,18 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\SchoolYear;
+use App\Models\Evaluation;
 use Illuminate\Http\Request;
-use App\Services\Contracts\SchoolYearContract;
+use App\Services\Contracts\EvaluationContract;
 
-class SchoolYearController extends Controller
+class EvaluationController extends Controller
 {
-    protected $schoolYearContract,  $response;
+    protected $evaluationContract,  $response;
 
-    public function __construct(SchoolYearContract $schoolYearContract)
+    public function __construct(EvaluationContract $evaluationContract)
     {
-        $this->title = "school-years";
-        $this->schoolYearContract = $schoolYearContract;
+        $this->title = "evaluations";
+        $this->evaluationContract = $evaluationContract;
         // $this->middleware("roles:{$this->title}");
         $this->response = [
             'code' => config('constants.HTTP.CODE.FAILED'),
@@ -35,26 +35,32 @@ class SchoolYearController extends Controller
 
     public function data(Request $request)
     {
-        $jml = $request->jml == '' ? config('constants.PAGINATION') : $request->jml;
-        $title = $this->title;
-        $data = SchoolYear::when($request->input('cari'), function ($query) use ($request) {
-            $query->where('name', 'like', "%{$request->input('cari')}%");
-        })
-            ->paginate($jml);
+        try {
+            $title = $this->title;
+            $jml = $request->jml == '' ? config('constants.PAGINATION') : $request->jml;
+            $data = Evaluation::when($request->input('cari'), function ($query) use ($request) {
+                $query->where('value', 'like', "%{$request->input('cari')}%")
+                    ->orWhere("description", "like", "%{$request->input('cari')}%");
+            })
+                ->paginate($jml);
 
-        $view = view('admin.' . $this->title . '.data', compact('data', 'title'))->with('i', ($request->input('page', 1) -
-            1) * $jml)->render();
-        return response()->json([
-            "total_page" => $data->lastpage(),
-            "total_data" => $data->total(),
-            "html"       => $view,
-        ]);
+            $view = view('admin.' . $this->title . '.data', compact('data', 'title'))->with('i', ($request->input('page', 1) -
+                1) * $jml)->render();
+            return response()->json([
+                "total_page" => $data->lastpage(),
+                "total_data" => $data->total(),
+                "html"       => $view,
+            ]);
+        } catch (\Exception $e) {
+            $this->response['message'] = $e->getMessage() . ' in file :' . $e->getFile() . ' line: ' . $e->getLine();
+            return response()->json($this->response);
+        }
     }
 
     public function store(Request $request)
     {
         try {
-            $data = $this->schoolYearContract->store($request);
+            $data = $this->evaluationContract->store($request);
             return response()->json($data);
         } catch (\Exception $e) {
             $this->response['message'] = $e->getMessage() . ' in file :' . $e->getFile() . ' line: ' . $e->getLine();
@@ -65,7 +71,7 @@ class SchoolYearController extends Controller
     public function edit($id)
     {
         try {
-            $data = $this->schoolYearContract->show($id);
+            $data = $this->evaluationContract->show($id);
             return response()->json($data);
         } catch (\Exception $e) {
             $this->response['message'] = $e->getMessage() . ' in file :' . $e->getFile() . ' line: ' . $e->getLine();
@@ -76,7 +82,7 @@ class SchoolYearController extends Controller
     public function update(Request $request, $id)
     {
         try {
-            $data = $this->schoolYearContract->update($request, $id);
+            $data = $this->evaluationContract->update($request, $id);
             return response()->json($data);
         } catch (\Exception $e) {
             $this->response['message'] = $e->getMessage() . ' in file :' . $e->getFile() . ' line: ' . $e->getLine();
@@ -87,7 +93,7 @@ class SchoolYearController extends Controller
     public function destroy($id)
     {
         try {
-            $data = $this->schoolYearContract->delete($id);
+            $data = $this->evaluationContract->delete($id);
             return response()->json($data);
         } catch (\Exception $e) {
             $this->response['message'] = $e->getMessage() . ' in file :' . $e->getFile() . ' line: ' . $e->getLine();
