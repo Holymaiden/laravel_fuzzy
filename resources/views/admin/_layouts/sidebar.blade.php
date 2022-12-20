@@ -16,6 +16,20 @@
                 </a>
             </li>
 
+            <li class="@stack('classes')">
+                <a class="nav-link" href="{{ route('classes') }}">
+                    <i class="fas fa-fire"></i>
+                    <span>Kelas</span>
+                </a>
+            </li>
+
+            <li class="@stack('school-years')">
+                <a class="nav-link" href="{{ route('school-years') }}">
+                    <i class="fas fa-fire"></i>
+                    <span>Tahun Ajaran</span>
+                </a>
+            </li>
+
             <li class="@stack('students')">
                 <a class="nav-link" href="{{ route('students') }}">
                     <i class="fas fa-fire"></i>

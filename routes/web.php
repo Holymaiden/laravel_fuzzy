@@ -21,13 +21,22 @@ Route::group(['prefix' => '',  'namespace' => 'App\Http\Controllers\Admin', 'mid
 
         Route::get('/', 'DashboardController@index')->name('dashboard');
 
-        Route::group(['prefix' => '/roles'], function () {
-            Route::get('/', 'RoleController@index')->name('roles');
-            Route::get('/data', 'RoleController@data')->name('roles.data');
-            Route::post('/store', 'RoleController@store')->name('roles.store');
-            Route::get('/{id}/edit', 'RoleController@edit')->name('roles.edit');
-            Route::put('/{id}', 'RoleController@update')->name('roles.update');
-            Route::delete('/{id}', 'RoleController@destroy')->name('roles.delete');
+        Route::group(['prefix' => '/classes'], function () {
+            Route::get('/', 'ClassesController@index')->name('classes');
+            Route::get('/data', 'ClassesController@data')->name('classes.data');
+            Route::post('/store', 'ClassesController@store')->name('classes.store');
+            Route::get('/{id}/edit', 'ClassesController@edit')->name('classes.edit');
+            Route::put('/{id}', 'ClassesController@update')->name('classes.update');
+            Route::delete('/{id}', 'ClassesController@destroy')->name('classes.delete');
+        });
+
+        Route::group(['prefix' => '/school-years'], function () {
+            Route::get('/', 'SchoolYearController@index')->name('school-years');
+            Route::get('/data', 'SchoolYearController@data')->name('school-years.data');
+            Route::post('/store', 'SchoolYearController@store')->name('school-years.store');
+            Route::get('/{id}/edit', 'SchoolYearController@edit')->name('school-years.edit');
+            Route::put('/{id}', 'SchoolYearController@update')->name('school-years.update');
+            Route::delete('/{id}', 'SchoolYearController@destroy')->name('school-years.delete');
         });
 
         Route::group(['prefix' => '/users'], function () {
