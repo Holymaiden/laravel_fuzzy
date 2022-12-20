@@ -60,7 +60,7 @@ class StudentService implements StudentContract
      */
     public function delete($id)
     {
-        return $this->contractRepo->delete($id);
+        return Value::where('id', $id)->delete();
     }
 
     /**
