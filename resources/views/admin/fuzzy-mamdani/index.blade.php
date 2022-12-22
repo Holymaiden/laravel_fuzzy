@@ -4,10 +4,6 @@
 @include('admin._layouts.css.css-table')
 @endpush
 
-@push('user-settings')
-active
-@endpush
-
 @push($title)
 active
 @endpush
@@ -17,7 +13,7 @@ active
 <section class="section">
 
     @component('_card.head')
-    Siswa
+    Kelas
     @endcomponent
 
     <div class="section-body">
@@ -80,13 +76,15 @@ active
                             <table class="table table-bordered">
                                 <thead>
                                     <tr>
-                                        <th width="8%">No</th>
-                                        <th>Nama</th>
-                                        <th>Nisn</th>
-                                        <th>Nis</th>
-                                        <th>Jenis Kelamin</th>
-                                        <th>Penilaian</th>
-                                        <th width="12%">Aksi</th>
+                                        <th scope="col" width="8%">No</th>
+                                        <th scope="col">Name</th>
+                                        <th scope="col">Nilai Spiritual</th>
+                                        <th scope="col">Nilai Sosial</th>
+                                        <th scope="col">Nilai Akademik</th>
+                                        <th scope="col">Nilai Ekstrakurikuler</th>
+                                        <th scope="col">Rata-Rata</th>
+                                        <th scope="col">Keterangan</th>
+                                        <th scope="col" width="12%">Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody class="datatabel">
@@ -132,7 +130,7 @@ active
             }
         });
 
-        loadpage('', "{{config('constants.PAGINATION')}}", '', '', '');
+        loadpage('', "{{config('constants.PAGINATION')}}", "", "", "");
 
         var $pagination = $('.twbs-pagination');
         var defaultOpts = {
@@ -154,6 +152,7 @@ active
                     "tahun": tahun,
                     "kelas": kelas,
                     "semester": semester
+
                 },
                 type: "GET",
                 datatype: "json",
@@ -216,122 +215,6 @@ active
             let kelas = $('#classes_filter').val();
             let semester = $('#semester_filter').val();
             loadpage(cari, jml, tahun, kelas, semester);
-        });
-
-        // proses simpan
-        $('#saveBtn').click(function(e) {
-            e.preventDefault();
-            $.ajax({
-                data: $('#formInput').serialize(),
-                url: "{{ route($title.'.store') }}",
-                type: "POST",
-                dataType: 'json',
-                success: function(data) {
-                    $('#formInput').trigger("reset");
-                    $('#ajaxModel').modal('hide');
-                    loadpage('', "{{config('constants.PAGINATION')}}", '', '', '');
-                    iziToast.success({
-                        title: 'Successfull.',
-                        message: 'Save it data!',
-                        position: 'topRight',
-                        timeout: 1500
-                    });
-                },
-                error: function(data) {
-                    console.log('Error:', data);
-                    $('#formInput').trigger("reset");
-                    $('#ajaxModel').modal('hide');
-                    iziToast.error({
-                        title: 'Failed,',
-                        message: 'Save it data!',
-                        position: 'topRight',
-                        timeout: 1500
-                    });
-                }
-            });
-        });
-
-        // proses update
-        $('#updateBtn').click(function(e) {
-            let id = $('#formId').val();
-            e.preventDefault();
-            $.ajax({
-                data: $('#formInput').serialize(),
-                url: urlx + '/' + id,
-                type: "PUT",
-                dataType: 'json',
-                success: function(data) {
-                    $('#formInput').trigger("reset");
-                    $('#ajaxModel').modal('hide');
-                    loadpage('', "{{config('constants.PAGINATION')}}", '', '', '');
-                    iziToast.success({
-                        title: 'Successfull,',
-                        message: 'Update it data!',
-                        position: 'topRight',
-                        timeout: 1500
-                    });
-                },
-                error: function(data) {
-                    $('#formInput').trigger("reset");
-                    $('#ajaxModel').modal('hide');
-                    iziToast.error({
-                        title: 'Failed.',
-                        message: 'Update it data!',
-                        position: 'topRight',
-                        timeout: 1500
-                    });
-                }
-            });
-        });
-
-        $('body').on('click', '.deleteData', function() {
-            var id = $(this).data("id");
-            swal({
-                    title: 'Are you sure?',
-                    text: 'You want to delete this data!',
-                    icon: 'warning',
-                    dangerMode: true,
-                    buttons: {
-                        confirm: {
-                            text: 'Yes, delete it!',
-                            className: 'btn btn-success'
-                        },
-                        cancel: {
-                            visible: true,
-                            className: 'btn btn-danger'
-                        }
-                    }
-                })
-                .then((willDelete) => {
-                    if (willDelete) {
-                        $.ajax({
-                            headers: {
-                                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                            },
-                            type: "DELETE",
-                            url: urlx + '/' + id,
-                            success: function(data) {
-                                loadpage('', "{{config('constants.PAGINATION')}}", '', '', '');
-                                iziToast.success({
-                                    title: 'Successfull.',
-                                    message: 'Delete it data!',
-                                    position: 'topRight',
-                                    timeout: 1500
-                                });
-                            },
-                            error: function(data) {
-                                iziToast.error({
-                                    title: 'Failed,',
-                                    message: 'Delete it data!',
-                                    position: 'topRight',
-                                    timeout: 1500
-                                });
-                            }
-                        });
-                    } else {
-                        swal.close();
-                    }
-                });
         });
 
     });

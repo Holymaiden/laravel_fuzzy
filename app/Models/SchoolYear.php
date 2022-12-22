@@ -11,5 +11,6 @@ class SchoolYear extends Model
     protected $table = 'school_years';
     protected $fillable = [
         'name',
+        'semester',
     ];
 }

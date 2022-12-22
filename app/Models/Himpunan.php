@@ -11,7 +11,8 @@ class Himpunan extends Model
     protected $fillable = [
         'evaluation_id',
         'name',
-        'semesta',
+        'min',
+        'max',
     ];
 
     public function evaluation()

@@ -31,6 +31,6 @@ class Value extends Model
 
     public function evaluation()
     {
-        return $this->hasMany('App\Models\StudentEvaluation', 'id', 'evaluation_id');
+        return $this->hasMany('App\Models\StudentEvaluation', 'value_id', 'id');
     }
 }

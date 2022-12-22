@@ -16,6 +16,13 @@
                             <label>Nama</label>
                             <input type="text" class="form-control" name="name" id="name" required />
                         </div>
+                        <div class="form-group col-md-6">
+                            <label>Semester</label>
+                            <select class="form-control select2" id="semester" name="semester" style="width:100%">
+                                <option value="Genap">Genap</option>
+                                <option value="Ganjil">Ganjil</option>
+                            </select>
+                        </div>
                     </div>
                 </div>
                 <div class="modal-footer bg-whitesmoke br">
@@ -57,6 +64,7 @@
                 $('#updateBtn').show();
                 $('#formId').val(data.id);
                 $('#name').val(data.name);
+                $('#semester').val(data.semester).trigger('change');
             },
             error: function() {
                 iziToast.error({

@@ -5,7 +5,7 @@
                 @csrf
                 <input type="hidden" name="id" id="formId">
                 <div class="modal-header">
-                    <h5 class="modal-title"> <label id="headForm"></label> {{ Helper::head($title) }}</h5>
+                    <h5 class="modal-title"> <label id="headForm"></label> Kelas</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -13,39 +13,8 @@
                 <div class="modal-body">
                     <div class="form-row">
                         <div class="form-group col-md-6">
-                            <label>Name</label>
+                            <label>Nama</label>
                             <input type="text" class="form-control" name="name" id="name" required />
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label>Username</label>
-                            <input type="text" class="form-control" name="username" id="username" required />
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group col-md-6">
-                            <label>Email</label>
-                            <input type="text" class="form-control" name="email" id="email" required />
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label>Password</label>
-                            <input type="password" class="form-control" name="password" id="" />
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group col-md-6">
-                            <label>Role User</label>
-                            <select class="form-control select2" id="role_id" name="role_id" style="width:100%">
-                                @foreach(Helper::get_data('roles') as $v)
-                                <option value="{{$v->id}}">{{$v->role_name}}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label>Active</label>
-                            <select class="form-control select2" id="active" name="active" style="width:100%">
-                                <option value="1">Yes</option>
-                                <option value="0">No</option>
-                            </select>
                         </div>
                     </div>
                 </div>
@@ -88,10 +57,6 @@
                 $('#updateBtn').show();
                 $('#formId').val(data.id);
                 $('#name').val(data.name);
-                $('#username').val(data.username);
-                $('#email').val(data.email);
-                $('#role_id').val(data.role_id).trigger('change');
-                $('#active').val(data.active).trigger('change');
             },
             error: function() {
                 iziToast.error({

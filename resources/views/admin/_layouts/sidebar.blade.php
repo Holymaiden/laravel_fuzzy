@@ -18,52 +18,45 @@
 
             <li class="@stack('classes')">
                 <a class="nav-link" href="{{ route('classes') }}">
-                    <i class="fas fa-fire"></i>
+                    <i class="fas fa-school"></i>
                     <span>Kelas</span>
                 </a>
             </li>
 
             <li class="@stack('school-years')">
                 <a class="nav-link" href="{{ route('school-years') }}">
-                    <i class="fas fa-fire"></i>
+                    <i class="fas fa-graduation-cap"></i>
                     <span>Tahun Ajaran</span>
                 </a>
             </li>
 
             <li class="@stack('students')">
                 <a class="nav-link" href="{{ route('students') }}">
-                    <i class="fas fa-fire"></i>
+                    <i class="fas fa-chalkboard-teacher"></i>
                     <span>Siswa</span>
                 </a>
             </li>
 
             <li class="@stack('evaluations')">
                 <a class="nav-link" href="{{ route('evaluations') }}">
-                    <i class="fas fa-fire"></i>
+                    <i class="fab fa-connectdevelop"></i>
                     <span>Evaluasi</span>
+                </a>
+            </li>
+
+            <li class="@stack('fuzzy-mamdani')">
+                <a class="nav-link" href="{{ route('fuzzy-mamdani') }}">
+                    <i class="fas fa-atom"></i>
+                    <span>Fuzzy Mamdani</span>
                 </a>
             </li>
 
             <li class="@stack('users')">
                 <a class="nav-link" href="{{ route('users') }}">
-                    <i class="fas fa-fire"></i>
+                    <i class="fas fa-users"></i>
                     <span>Users</span>
                 </a>
             </li>
-            <!-- <li class="nav-item dropdown ">
-                <a href="#" class="nav-link has-dropdown">
-                    <i class="fas fa-list-alt"></i>
-                    <span>Users</span>
-                </a>
-                <ul class="dropdown-menu">
-                    <li class="1">
-                        <a class="nav-link" href="{{ url('admin/users') }}">
-                            Users
-                        </a>
-                    </li>
-
-                </ul>
-            </li> -->
         </ul>
 
         <div class="mt-4 mb-4 p-3 hide-sidebar-mini">

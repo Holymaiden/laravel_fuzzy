@@ -39,6 +39,11 @@ Route::group(['prefix' => '',  'namespace' => 'App\Http\Controllers\Admin', 'mid
             Route::delete('/{id}', 'EvaluationController@destroy')->name('evaluations.delete');
         });
 
+        Route::group(['prefix' => '/fuzzy-mamdani'], function () {
+            Route::get('/', 'FuzzyMamdaniController@index')->name('fuzzy-mamdani');
+            Route::get('/data', 'FuzzyMamdaniController@data')->name('fuzzy-mamdani.data');
+        });
+
         Route::group(['prefix' => '/school-years'], function () {
             Route::get('/', 'SchoolYearController@index')->name('school-years');
             Route::get('/data', 'SchoolYearController@data')->name('school-years.data');

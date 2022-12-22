@@ -26,6 +26,7 @@ class RepositoryServiceProvider extends ServiceProvider
         $models = array(
             'Classes',
             'Evaluation',
+            'Himpunan',
             'Role',
             'SchoolYear',
             'Student',

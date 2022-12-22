@@ -13,4 +13,9 @@ class Evaluation extends Model
         'value',
         'description',
     ];
+
+    public function himpunan()
+    {
+        return $this->hasMany('App\Models\Himpunan', 'evaluation_id', 'id');
+    }
 }

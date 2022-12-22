@@ -17,7 +17,8 @@ return new class extends Migration
             $table->id();
             $table->integer('evaluation_id');
             $table->string('name');
-            $table->string('semesta');
+            $table->integer('min');
+            $table->integer('max');
             $table->timestamps();
         });
     }

@@ -41,6 +41,7 @@ class AppServiceProvider extends ServiceProvider
         $models = array(
             'Classes',
             'Evaluation',
+            'Himpunan',
             'Role',
             'SchoolYear',
             'Student',

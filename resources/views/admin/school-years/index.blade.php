@@ -37,6 +37,7 @@ active
                                     <tr>
                                         <th scope="col" width="8%">No</th>
                                         <th scope="col">Name</th>
+                                        <th scope="col">Semester</th>
                                         <th scope="col" width="12%">Aksi</th>
                                     </tr>
                                 </thead>

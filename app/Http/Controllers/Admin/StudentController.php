@@ -39,10 +39,15 @@ class StudentController extends Controller
         $title = $this->title;
         $tahun = $request->tahun == '' ? 'is not null' : '="' . $request->tahun . '"';
         $kelas = $request->kelas == '' ? 'is not null' : '="' . $request->kelas . '"';
-        $data = Student::whereHas('value', function ($q) use ($tahun, $kelas) {
-            $q->whereRaw('school_year_id ' . $tahun)->whereRaw('class_id ' . $kelas);
-        })->with('value', function ($q) use ($tahun, $kelas) {
-            $q->whereRaw('school_year_id ' . $tahun)->whereRaw('class_id ' . $kelas);
+        $semester = $request->semester == '' ? 'is not null' : '="' . $request->semester . '"';
+        $data = Student::whereHas('value', function ($q) use ($tahun, $kelas, $semester) {
+            $q->whereRaw('school_year_id ' . $tahun)->whereRaw('class_id ' . $kelas)->whereRaw('class_id ' . $kelas)->whereHas('schoolYear', function ($q) use ($semester) {
+                $q->whereRaw('semester ' . $semester);
+            }); 
+        })->with('value', function ($q) use ($tahun, $kelas, $semester) {
+            $q->whereRaw('school_year_id ' . $tahun)->whereRaw('class_id ' . $kelas)->whereHas('schoolYear', function ($q) use ($semester) {
+                $q->whereRaw('semester ' . $semester);
+            });
         })->when($request->input('cari'), function ($query) use ($request) {
             $query->where('name', 'like', "%{$request->input('cari')}%")
                 ->orWhere("nisn", "like", "%{$request->input('cari')}%")
