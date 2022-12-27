@@ -3,6 +3,8 @@
 namespace App\Services;
 
 use App\Models\SchoolYear;
+use App\Models\Student;
+use App\Models\StudentEvaluation;
 use App\Models\Value;
 use App\Repositories\Contracts\StudentContract as StudentRepo;
 use App\Services\Contracts\StudentContract;
@@ -83,5 +85,22 @@ class StudentService implements StudentContract
         $perPage = $perPage ?: config('constants.PAGINATION');
 
         return $this->contractRepo->paginate($perPage, $columns);
+    }
+
+    public function evaluation($request)
+    {
+        $input = $request->all();
+
+        $eval = [$input['spiritual'], $input['sosial'], $input['akademik'], $input['ekstrakulikuler']];
+        $data = [];
+        for ($i = 0; $i < 4; $i++) {
+            $data['value_id'] = $input['id'];
+            $data['evaluation_id'] = $i + 1;
+            $data['value'] = $eval[$i];
+
+            StudentEvaluation::create($data);
+        }
+
+        return true;
     }
 }

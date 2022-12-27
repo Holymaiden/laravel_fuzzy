@@ -66,6 +66,7 @@ Route::group(['prefix' => '',  'namespace' => 'App\Http\Controllers\Admin', 'mid
             Route::get('/', 'StudentController@index')->name('students');
             Route::get('/data', 'StudentController@data')->name('students.data');
             Route::post('/store', 'StudentController@store')->name('students.store');
+            Route::post('/store/eval', 'StudentController@evaluation')->name('students.evaluation');
             Route::get('/{id}/edit', 'StudentController@edit')->name('students.edit');
             Route::put('/{id}', 'StudentController@update')->name('students.update');
             Route::delete('/{id}', 'StudentController@destroy')->name('students.delete');

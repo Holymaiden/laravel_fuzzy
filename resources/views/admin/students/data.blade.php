@@ -9,6 +9,13 @@
         <span class="badge {{ $v->value->evaluation->count() > 0 ? 'badge-success' : 'badge-danger'}}">
             {{ $v->value->evaluation->count() > 0 ? 'Selesai' : 'Belum Terisi'}}
         </span>
+        @if($v->value->evaluation->count() == 0)
+        <a onclick="penilaianForm('{{$v->value->id}}')" class="">
+            <button type=" button" class="btn btn-icon btn-round btn-success btn-sm">
+                <i class="fa fa-pencil-alt"></i>
+            </button>
+        </a>
+        @endif
     </td>
     <td><a onclick="editForm(' . $v->id . ','{{$v->value->school_year_id}}','{{$v->value->class_id}}', '{{$v->value->schoolYear->semester}}')" class="">
             <button type="button" class="btn btn-icon btn-round btn-warning btn-sm">

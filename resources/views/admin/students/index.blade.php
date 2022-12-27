@@ -113,6 +113,7 @@ active
 </section>
 
 @include('admin.'.$title.'._form')
+@include('admin.'.$title.'._penilaianForm')
 
 @endsection
 
@@ -334,6 +335,38 @@ active
                 });
         });
 
+        // proses simpan
+        $('#saveBtn1').click(function(e) {
+            e.preventDefault();
+            $.ajax({
+                data: $('#formInput1').serialize(),
+                url: "{{ route($title.'.evaluation') }}",
+                type: "POST",
+                dataType: 'json',
+                success: function(data) {
+                    $('#formInput1').trigger("reset");
+                    $('#ajaxModel1').modal('hide');
+                    loadpage('', "{{config('constants.PAGINATION')}}", '', '', '');
+                    iziToast.success({
+                        title: 'Successfull.',
+                        message: 'Save it data!',
+                        position: 'topRight',
+                        timeout: 1500
+                    });
+                },
+                error: function(data) {
+                    console.log('Error:', data);
+                    $('#formInput1').trigger("reset");
+                    $('#ajaxModel1').modal('hide');
+                    iziToast.error({
+                        title: 'Failed,',
+                        message: 'Save it data!',
+                        position: 'topRight',
+                        timeout: 1500
+                    });
+                }
+            });
+        });
     });
 </script>
 @endpush

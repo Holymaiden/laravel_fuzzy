@@ -15,4 +15,6 @@ interface StudentContract
     public function delete($id);
 
     public function paginate();
+
+    public function evaluation($request);
 }

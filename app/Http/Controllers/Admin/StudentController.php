@@ -108,4 +108,15 @@ class StudentController extends Controller
             return view('errors.message', ['message' => $this->response]);
         }
     }
+
+    public function evaluation(Request $request)
+    {
+        try {
+            $data = $this->studentContract->evaluation($request);
+            return response()->json($data);
+        } catch (\Exception $e) {
+            $this->response['message'] = $e->getMessage() . ' in file :' . $e->getFile() . ' line: ' . $e->getLine();
+            return view('errors.message', ['message' => $this->response]);
+        }
+    }
 }
