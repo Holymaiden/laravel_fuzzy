@@ -43,12 +43,12 @@ class FuzzyMamdaniController extends Controller
             $kelas = $request->kelas == '' ? 'is not null' : '="' . $request->kelas . '"';
             $semester = $request->semester == '' ? 'is not null' : '="' . $request->semester . '"';
             $data_dump = Student::whereHas('value', function ($q) use ($tahun, $kelas, $semester) {
-                $q->whereRaw('school_year_id ' . $tahun)->whereRaw('class_id ' . $kelas)->whereRaw('class_id ' . $kelas)->whereHas('schoolYear', function ($q) use ($semester) {
-                    $q->whereRaw('semester ' . $semester);
+                $q->whereRaw('class_id ' . $kelas)->whereHas('schoolYear', function ($q) use ($semester, $tahun) {
+                    $q->whereRaw('semester ' . $semester)->whereRaw('name ' . $tahun);
                 });
             })->with('value', function ($q) use ($tahun, $kelas, $semester) {
-                $q->whereRaw('school_year_id ' . $tahun)->whereRaw('class_id ' . $kelas)->whereHas('schoolYear', function ($q) use ($semester) {
-                    $q->whereRaw('semester ' . $semester);
+                $q->whereRaw('class_id ' . $kelas)->whereHas('schoolYear', function ($q) use ($semester, $tahun) {
+                    $q->whereRaw('semester ' . $semester)->whereRaw('name ' . $tahun);
                 });
             })->when($request->input('cari'), function ($query) use ($request) {
                 $query->where('name', 'like', "%{$request->input('cari')}%")
@@ -64,28 +64,30 @@ class FuzzyMamdaniController extends Controller
             // Fuzzy Mamdani
             $fuzzy = [];
             foreach ($datas as $key => $value) {
-                $fuzzy[$key]['id'] = $value->id;
-                $fuzzy[$key]['name'] = $value->name;
-                $fuzzy[$key]['nisn'] = $value->nisn;
-                $fuzzy[$key]['nis'] = $value->nis;
-                $fuzzy[$key]['kelas'] = $value->value->classes->name;
-                $fuzzy[$key]['tahun'] = $value->value->schoolYear->name;
-                $fuzzy[$key]['semester'] = $value->value->schoolYear->semester;
+                if ($value->value->evaluation->count() >= 1) {
+                    $fuzzy[$key]['id'] = $value->id;
+                    $fuzzy[$key]['name'] = $value->name;
+                    $fuzzy[$key]['nisn'] = $value->nisn;
+                    $fuzzy[$key]['nis'] = $value->nis;
+                    $fuzzy[$key]['kelas'] = $value->value->classes->name;
+                    $fuzzy[$key]['tahun'] = $value->value->schoolYear->name;
+                    $fuzzy[$key]['semester'] = $value->value->schoolYear->semester;
 
-                // Value
-                $fuzzy[$key]['value'] = $value->value->evaluation;
+                    // Value
+                    $fuzzy[$key]['value'] = $value->value->evaluation;
 
-                // Total
-                $fuzzy[$key]['total'] = ($fuzzy[$key]['value'][0]['value'] + $fuzzy[$key]['value'][1]['value'] + $fuzzy[$key]['value'][2]['value'] + $fuzzy[$key]['value'][3]['value']) / 4;
+                    // Total
+                    $fuzzy[$key]['total'] = ($fuzzy[$key]['value'][0]['value'] + $fuzzy[$key]['value'][1]['value'] + $fuzzy[$key]['value'][2]['value'] + $fuzzy[$key]['value'][3]['value']) / 4;
 
-                // Evaluation
-                foreach ($eval as $key2 => $value2) {
-                    $fuzzy[$key]['eval'][$key2]['name'] = $value2->value;
-                    $fuzzy[$key]['eval'][$key2]['value'] = $value2->himpunan->where('min', '<=', $fuzzy[$key]['value'][$key2]['value'])->where('max', '>=', $fuzzy[$key]['value'][$key2]['value'])->first()->name;
+                    // Evaluation
+                    foreach ($eval as $key2 => $value2) {
+                        $fuzzy[$key]['eval'][$key2]['name'] = $value2->value;
+                        $fuzzy[$key]['eval'][$key2]['value'] = $value2->himpunan->where('min', '<=', $fuzzy[$key]['value'][$key2]['value'])->where('max', '>=', $fuzzy[$key]['value'][$key2]['value'])->first()->name;
+                    }
+
+                    // Rule
+                    $fuzzy[$key]['rule'] = Helper::rule_mamdani($fuzzy[$key]['eval'][0]['value'], $fuzzy[$key]['eval'][1]['value'], $fuzzy[$key]['eval'][2]['value'], $fuzzy[$key]['eval'][3]['value']);
                 }
-
-                // Rule
-                $fuzzy[$key]['rule'] = Helper::rule_mamdani($fuzzy[$key]['eval'][0]['value'], $fuzzy[$key]['eval'][1]['value'], $fuzzy[$key]['eval'][2]['value'], $fuzzy[$key]['eval'][3]['value']);
             }
             // Pagination
             $fuzzy = collect($fuzzy);

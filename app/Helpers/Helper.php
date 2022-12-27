@@ -2,6 +2,7 @@
 
 namespace App\Helpers;
 
+use App\Models\SchoolYear;
 use Illuminate\Support\Facades\DB;
 
 class Helper
@@ -222,5 +223,11 @@ class Helper
         }
 
         return $message;
+    }
+
+    public static function get_school_year()
+    {
+        $school_year = SchoolYear::get()->unique('name');
+        return $school_year;
     }
 }

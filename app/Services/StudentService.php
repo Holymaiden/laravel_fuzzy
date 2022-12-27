@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Models\SchoolYear;
 use App\Models\Value;
 use App\Repositories\Contracts\StudentContract as StudentRepo;
 use App\Services\Contracts\StudentContract;
@@ -29,6 +30,15 @@ class StudentService implements StudentContract
     public function store($request)
     {
         $input = $request->all();
+
+        $year = SchoolYear::where('name', $input['school_year_id'])->where('semester', $input['semester'])->firstOrFail();
+
+        Value::create([
+            'student_id' => $input['id'],
+            'school_year_id' => $year->id,
+            'class_id' => $input['class_id'],
+        ]);
+
         return $this->contractRepo->store($input);
     }
 
@@ -47,8 +57,10 @@ class StudentService implements StudentContract
     {
         $input = $request->all();
 
+        $year = SchoolYear::where('name', $input['school_year_id'])->where('semester', $input['semester'])->firstOrFail();
+
         $value = Value::where('id', $input['idValue'])->first();
-        $value->school_year_id = $input['school_year_id'];
+        $value->school_year_id = $year;
         $value->class_id = $input['class_id'];
         $value->save();
 

@@ -49,8 +49,8 @@ active
                                     <div class="form-group mr-2">
                                         <select class="form-control form-control-sm selectric" name="school_year_filter" id="school_year_filter">
                                             <option value="" selected="selected">Tahun Ajaran</option>
-                                            @foreach(Helper::get_data('school_years') as $v)
-                                            <option value="{{$v->id}}">{{$v->name}}</option>
+                                            @foreach(Helper::get_school_year() as $v)
+                                            <option value="{{$v->name}}">{{$v->name}}</option>
                                             @endforeach
                                         </select>
                                     </div>

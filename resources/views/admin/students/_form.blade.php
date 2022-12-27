@@ -13,16 +13,9 @@
                 </div>
                 <div class="modal-body">
                     <div class="form-row">
-                        <div class="form-group col-md-6">
+                        <div class="form-group col-md-12">
                             <label>Nama</label>
                             <input type="text" class="form-control" name="name" id="name" required />
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label>Jenis Kelamin</label>
-                            <select class="form-control select2" id="jkl" name="jkl" style="width:100%">
-                                <option value="L">Laki-Laki</option>
-                                <option value="P">Perempuan</option>
-                            </select>
                         </div>
                     </div>
                     <div class="form-row">
@@ -35,17 +28,35 @@
                             <input type="text" class="form-control" name="nis" id="nis" required />
                         </div>
                     </div>
+                    <div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label>Jenis Kelamin</label>
+                                <select class="form-control select2" id="jkl" name="jkl" style="width:100%">
+                                    <option value="L">Laki-Laki</option>
+                                    <option value="P">Perempuan</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label>Tahun Ajaran</label>
+                                <select class="form-control select2" id="school_year_id" name="school_year_id" style="width:100%">
+                                    @foreach(Helper::get_school_year() as $v)
+                                    <option value="{{$v->name}}">{{$v->name}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                    </div>
                     <div class="form-row">
                         <div class="form-group col-md-6">
-                            <label>Tahun Ajaran</label>
-                            <select class="form-control select2" id="school_year_id" name="school_year_id" style="width:100%">
-                                @foreach(Helper::get_data('school_years') as $v)
-                                <option value="{{$v->id}}">{{$v->name}}</option>
-                                @endforeach
+                            <label>Semester</label>
+                            <select class="form-control select2" id="semester" name="semester" style="width:100%">
+                                <option value="Ganjil">Ganjil</option>
+                                <option value="Genap">Genap</option>
                             </select>
                         </div>
                         <div class="form-group col-md-6">
-                            <label>Active</label>
+                            <label>Kelas</label>
                             <select class="form-control select2" id="class_id" name="class_id" style="width:100%">
                                 @foreach(Helper::get_data('classes') as $v)
                                 <option value="{{$v->id}}">{{$v->name}}</option>
@@ -78,7 +89,7 @@
     }
 
     //Tampilkan form edit
-    function editForm(id, tahun, kelas) {
+    function editForm(id, tahun, kelas, semester) {
         let urlx = "{{ $title }}"
         $.ajax({
             url: urlx + '/' + id + '/edit',
@@ -99,6 +110,7 @@
                 $('#nis').val(data.nis);
                 $('#school_year_id').val(tahun).trigger('change');
                 $('#class_id').val(kelas).trigger('change');
+                $('#semester').val(semester).trigger('change');
             },
             error: function() {
                 iziToast.error({

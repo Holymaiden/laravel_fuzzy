@@ -41,12 +41,12 @@ class StudentController extends Controller
         $kelas = $request->kelas == '' ? 'is not null' : '="' . $request->kelas . '"';
         $semester = $request->semester == '' ? 'is not null' : '="' . $request->semester . '"';
         $data = Student::whereHas('value', function ($q) use ($tahun, $kelas, $semester) {
-            $q->whereRaw('school_year_id ' . $tahun)->whereRaw('class_id ' . $kelas)->whereRaw('class_id ' . $kelas)->whereHas('schoolYear', function ($q) use ($semester) {
-                $q->whereRaw('semester ' . $semester);
-            }); 
+            $q->whereRaw('class_id ' . $kelas)->whereHas('schoolYear', function ($q) use ($semester, $tahun) {
+                $q->whereRaw('semester ' . $semester)->whereRaw('name ' . $tahun);
+            });
         })->with('value', function ($q) use ($tahun, $kelas, $semester) {
-            $q->whereRaw('school_year_id ' . $tahun)->whereRaw('class_id ' . $kelas)->whereHas('schoolYear', function ($q) use ($semester) {
-                $q->whereRaw('semester ' . $semester);
+            $q->whereRaw('class_id ' . $kelas)->whereHas('schoolYear', function ($q) use ($semester, $tahun) {
+                $q->whereRaw('semester ' . $semester)->whereRaw('name ' . $tahun);
             });
         })->when($request->input('cari'), function ($query) use ($request) {
             $query->where('name', 'like', "%{$request->input('cari')}%")
