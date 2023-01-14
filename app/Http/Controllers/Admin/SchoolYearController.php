@@ -9,7 +9,7 @@ use App\Services\Contracts\SchoolYearContract;
 
 class SchoolYearController extends Controller
 {
-    protected $schoolYearContract,  $response;
+    protected $schoolYearContract,  $response, $title;
 
     public function __construct(SchoolYearContract $schoolYearContract)
     {

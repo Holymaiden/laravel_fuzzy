@@ -9,7 +9,7 @@ use App\Services\Contracts\StudentContract;
 
 class StudentController extends Controller
 {
-    protected $roleContract,  $response;
+    protected $studentContract,  $response, $title;
 
     public function __construct(StudentContract $studentContract)
     {

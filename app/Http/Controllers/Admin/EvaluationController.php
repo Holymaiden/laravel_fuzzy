@@ -9,7 +9,7 @@ use App\Services\Contracts\EvaluationContract;
 
 class EvaluationController extends Controller
 {
-    protected $evaluationContract,  $response;
+    protected $evaluationContract,  $response, $title;
 
     public function __construct(EvaluationContract $evaluationContract)
     {

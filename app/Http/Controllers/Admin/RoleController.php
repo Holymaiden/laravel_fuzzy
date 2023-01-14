@@ -9,7 +9,7 @@ use App\Services\Contracts\RoleContract;
 
 class RoleController extends Controller
 {
-    protected $roleContract,  $response;
+    protected $roleContract,  $response, $title;
 
     public function __construct(RoleContract $roleContract)
     {
