@@ -2,7 +2,9 @@
 
 namespace App\Helpers;
 
+use App\Models\Evaluation;
 use App\Models\SchoolYear;
+use App\Models\Student;
 use Illuminate\Support\Facades\DB;
 
 class Helper
@@ -92,134 +94,685 @@ class Helper
         2. Tidak Berprestasi
         */
         $message = '';
-        if ($spiritual == 'Sangat Baik' && $sosial == 'Sangat Baik' && $akademik == 'Sangat Baik' && $ekstrakurikuler == 'Sangat Baik') {
-            $message = 'Berprestasi';
-        } else if ($spiritual == 'Sangat Baik' && $sosial == 'Sangat Baik' && $akademik == 'Sangat Baik' && $ekstrakurikuler == 'Baik') {
-            $message = 'Berprestasi';
-        } else if ($spiritual == 'Sangat Baik' && $sosial == 'Sangat Baik' && $akademik == 'Sangat Baik' && $ekstrakurikuler == 'Cukup') {
-            $message = 'Berprestasi';
-        } else if ($spiritual == 'Sangat Baik' && $sosial == 'Sangat Baik' && $akademik == 'Sangat Baik' && $ekstrakurikuler == 'Perlu Bimbingan') {
-            $message = 'Tidak Berprestasi';
-        } else if ($spiritual == 'Sangat Baik' && $sosial == 'Sangat Baik' && $akademik == 'Baik' && $ekstrakurikuler == 'Sangat Baik') {
-            $message = 'Berprestasi';
-        } else if ($spiritual == 'Sangat Baik' && $sosial == 'Sangat Baik' && $akademik == 'Baik' && $ekstrakurikuler == 'Baik') {
-            $message = 'Berprestasi';
-        } else if ($spiritual == 'Sangat Baik' && $sosial == 'Sangat Baik' && $akademik == 'Baik' && $ekstrakurikuler == 'Cukup') {
-            $message = 'Berprestasi';
-        } else if ($spiritual == 'Sangat Baik' && $sosial == 'Sangat Baik' && $akademik == 'Baik' && $ekstrakurikuler == 'Perlu Bimbingan') {
-            $message = 'Tidak Berprestasi';
-        } else if ($spiritual == 'Sangat Baik' && $sosial == 'Sangat Baik' && $akademik == 'Cukup' && $ekstrakurikuler == 'Sangat Baik') {
-            $message = 'Berprestasi';
-        } else if ($spiritual == 'Sangat Baik' && $sosial == 'Sangat Baik' && $akademik == 'Cukup' && $ekstrakurikuler == 'Baik') {
-            $message = 'Berprestasi';
-        } else if ($spiritual == 'Sangat Baik' && $sosial == 'Sangat Baik' && $akademik == 'Cukup' && $ekstrakurikuler == 'Cukup') {
-            $message = 'Berprestasi';
-        } else if ($spiritual == 'Sangat Baik' && $sosial == 'Sangat Baik' && $akademik == 'Cukup' && $ekstrakurikuler == 'Perlu Bimbingan') {
-            $message = 'Tidak Berprestasi';
-        } else if ($spiritual == 'Sangat Baik' && $sosial == 'Sangat Baik' && $akademik == 'Perlu Bimbingan' && $ekstrakurikuler == 'Sangat Baik') {
-            $message = 'Tidak Berprestasi';
-        } else if ($spiritual == 'Sangat Baik' && $sosial == 'Sangat Baik' && $akademik == 'Perlu Bimbingan' && $ekstrakurikuler == 'Baik') {
-            $message = 'Tidak Berprestasi';
-        } else if ($spiritual == 'Sangat Baik' && $sosial == 'Sangat Baik' && $akademik == 'Perlu Bimbingan' && $ekstrakurikuler == 'Cukup') {
-            $message = 'Tidak Berprestasi';
-        } else if ($spiritual == 'Sangat Baik' && $sosial == 'Sangat Baik' && $akademik == 'Perlu Bimbingan' && $ekstrakurikuler == 'Perlu Bimbingan') {
-            $message = 'Tidak Berprestasi';
-        } else if ($spiritual == 'Sangat Baik' && $sosial == 'Baik' && $akademik == 'Sangat Baik' && $ekstrakurikuler == 'Sangat Baik') {
-            $message = 'Berprestasi';
-        } else if ($spiritual == 'Sangat Baik' && $sosial == 'Baik' && $akademik == 'Sangat Baik' && $ekstrakurikuler == 'Baik') {
-            $message = 'Berprestasi';
-        } else if ($spiritual == 'Sangat Baik' && $sosial == 'Baik' && $akademik == 'Sangat Baik' && $ekstrakurikuler == 'Cukup') {
-            $message = 'Berprestasi';
-        } else if ($spiritual == 'Sangat Baik' && $sosial == 'Baik' && $akademik == 'Sangat Baik' && $ekstrakurikuler == 'Perlu Bimbingan') {
-            $message = 'Tidak Berprestasi';
-        } else if ($spiritual == 'Sangat Baik' && $sosial == 'Baik' && $akademik == 'Baik' && $ekstrakurikuler == 'Sangat Baik') {
-            $message = 'Berprestasi';
-        } else if ($spiritual == 'Sangat Baik' && $sosial == 'Baik' && $akademik == 'Baik' && $ekstrakurikuler == 'Baik') {
-            $message = 'Berprestasi';
-        } else if ($spiritual == 'Sangat Baik' && $sosial == 'Baik' && $akademik == 'Baik' && $ekstrakurikuler == 'Cukup') {
-            $message = 'Berprestasi';
-        } else if ($spiritual == 'Sangat Baik' && $sosial == 'Baik' && $akademik == 'Baik' && $ekstrakurikuler == 'Perlu Bimbingan') {
-            $message = 'Tidak Berprestasi';
-        } else if ($spiritual == 'Sangat Baik' && $sosial == 'Baik' && $akademik == 'Cukup' && $ekstrakurikuler == 'Sangat Baik') {
-            $message = 'Berprestasi';
-        } else if ($spiritual == 'Sangat Baik' && $sosial == 'Baik' && $akademik == 'Cukup' && $ekstrakurikuler == 'Baik') {
-            $message = 'Berprestasi';
-        } else if ($spiritual == 'Sangat Baik' && $sosial == 'Baik' && $akademik == 'Cukup' && $ekstrakurikuler == 'Cukup') {
-            $message = 'Berprestasi';
-        } else if ($spiritual == 'Sangat Baik' && $sosial == 'Baik' && $akademik == 'Cukup' && $ekstrakurikuler == 'Perlu Bimbingan') {
-            $message = 'Tidak Berprestasi';
-        } else if ($spiritual == 'Sangat Baik' && $sosial == 'Baik' && $akademik == 'Perlu Bimbingan' && $ekstrakurikuler == 'Sangat Baik') {
-            $message = 'Tidak Berprestasi';
-        } else if ($spiritual == 'Sangat Baik' && $sosial == 'Baik' && $akademik == 'Perlu Bimbingan' && $ekstrakurikuler == 'Baik') {
-            $message = 'Tidak Berprestasi';
-        } else if ($spiritual == 'Sangat Baik' && $sosial == 'Baik' && $akademik == 'Perlu Bimbingan' && $ekstrakurikuler == 'Cukup') {
-            $message = 'Tidak Berprestasi';
-        } else if ($spiritual == 'Sangat Baik' && $sosial == 'Baik' && $akademik == 'Perlu Bimbingan' && $ekstrakurikuler == 'Perlu Bimbingan') {
-            $message = 'Tidak Berprestasi';
-        } else if ($spiritual == 'Sangat Baik' && $sosial == 'Cukup' && $akademik == 'Sangat Baik' && $ekstrakurikuler == 'Sangat Baik') {
-            $message = 'Berprestasi';
-        } else if ($spiritual == 'Sangat Baik' && $sosial == 'Cukup' && $akademik == 'Sangat Baik' && $ekstrakurikuler == 'Baik') {
-            $message = 'Berprestasi';
-        } else if ($spiritual == 'Sangat Baik' && $sosial == 'Cukup' && $akademik == 'Sangat Baik' && $ekstrakurikuler == 'Cukup') {
-            $message = 'Berprestasi';
-        } else if ($spiritual == 'Sangat Baik' && $sosial == 'Cukup' && $akademik == 'Sangat Baik' && $ekstrakurikuler == 'Perlu Bimbingan') {
-            $message = 'Tidak Berprestasi';
-        } else if ($spiritual == 'Sangat Baik' && $sosial == 'Cukup' && $akademik == 'Baik' && $ekstrakurikuler == 'Sangat Baik') {
-            $message = 'Berprestasi';
-        } else if ($spiritual == 'Sangat Baik' && $sosial == 'Cukup' && $akademik == 'Baik' && $ekstrakurikuler == 'Baik') {
-            $message = 'Berprestasi';
-        } else if ($spiritual == 'Sangat Baik' && $sosial == 'Cukup' && $akademik == 'Baik' && $ekstrakurikuler == 'Cukup') {
-            $message = 'Berprestasi';
-        } else if ($spiritual == 'Sangat Baik' && $sosial == 'Cukup' && $akademik == 'Baik' && $ekstrakurikuler == 'Perlu Bimbingan') {
-            $message = 'Tidak Berprestasi';
-        } else if ($spiritual == 'Sangat Baik' && $sosial == 'Cukup' && $akademik == 'Cukup' && $ekstrakurikuler == 'Sangat Baik') {
-            $message = 'Berprestasi';
-        } else if ($spiritual == 'Sangat Baik' && $sosial == 'Cukup' && $akademik == 'Cukup' && $ekstrakurikuler == 'Baik') {
-            $message = 'Berprestasi';
-        } else if ($spiritual == 'Sangat Baik' && $sosial == 'Cukup' && $akademik == 'Cukup' && $ekstrakurikuler == 'Cukup') {
-            $message = 'Berprestasi';
-        } else if ($spiritual == 'Sangat Baik' && $sosial == 'Cukup' && $akademik == 'Cukup' && $ekstrakurikuler == 'Perlu Bimbingan') {
-            $message = 'Tidak Berprestasi';
-        } else if ($spiritual == 'Sangat Baik' && $sosial == 'Cukup' && $akademik == 'Perlu Bimbingan' && $ekstrakurikuler == 'Sangat Baik') {
-            $message = 'Tidak Berprestasi';
-        } else if ($spiritual == 'Sangat Baik' && $sosial == 'Cukup' && $akademik == 'Perlu Bimbingan' && $ekstrakurikuler == 'Baik') {
-            $message = 'Tidak Berprestasi';
-        } else if ($spiritual == 'Sangat Baik' && $sosial == 'Cukup' && $akademik == 'Perlu Bimbingan' && $ekstrakurikuler == 'Cukup') {
-            $message = 'Tidak Berprestasi';
-        } else if ($spiritual == 'Sangat Baik' && $sosial == 'Cukup' && $akademik == 'Perlu Bimbingan' && $ekstrakurikuler == 'Perlu Bimbingan') {
-            $message = 'Tidak Berprestasi';
-        } else if ($spiritual == 'Sangat Baik' && $sosial == 'Perlu Bimbingan' && $akademik == 'Sangat Baik' && $ekstrakurikuler == 'Sangat Baik') {
-            $message = 'Tidak Berprestasi';
-        } else if ($spiritual == 'Sangat Baik' && $sosial == 'Perlu Bimbingan' && $akademik == 'Sangat Baik' && $ekstrakurikuler == 'Baik') {
-            $message = 'Tidak Berprestasi';
-        } else if ($spiritual == 'Sangat Baik' && $sosial == 'Perlu Bimbingan' && $akademik == 'Sangat Baik' && $ekstrakurikuler == 'Cukup') {
-            $message = 'Tidak Berprestasi';
-        } else if ($spiritual == 'Sangat Baik' && $sosial == 'Perlu Bimbingan' && $akademik == 'Sangat Baik' && $ekstrakurikuler == 'Perlu Bimbingan') {
-            $message = 'Tidak Berprestasi';
-        } else if ($spiritual == 'Sangat Baik' && $sosial == 'Perlu Bimbingan' && $akademik == 'Baik' && $ekstrakurikuler == 'Sangat Baik') {
-            $message = 'Tidak Berprestasi';
-        } else if ($spiritual == 'Sangat Baik' && $sosial == 'Perlu Bimbingan' && $akademik == 'Baik' && $ekstrakurikuler == 'Baik') {
-            $message = 'Tidak Berprestasi';
-        } else if ($spiritual == 'Sangat Baik' && $sosial == 'Perlu Bimbingan' && $akademik == 'Baik' && $ekstrakurikuler == 'Cukup') {
-            $message = 'Tidak Berprestasi';
-        } else if ($spiritual == 'Sangat Baik' && $sosial == 'Perlu Bimbingan' && $akademik == 'Baik' && $ekstrakurikuler == 'Perlu Bimbingan') {
-            $message = 'Tidak Berprestasi';
-        } else if ($spiritual == 'Sangat Baik' && $sosial == 'Perlu Bimbingan' && $akademik == 'Cukup' && $ekstrakurikuler == 'Sangat Baik') {
-            $message = 'Tidak Berprestasi';
-        } else if ($spiritual == 'Sangat Baik' && $sosial == 'Perlu Bimbingan' && $akademik == 'Cukup' && $ekstrakurikuler == 'Baik') {
-            $message = 'Tidak Berprestasi';
-        } else if ($spiritual == 'Sangat Baik' && $sosial == 'Perlu Bimbingan' && $akademik == 'Cukup' && $ekstrakurikuler == 'Cukup') {
-            $message = 'Tidak Berprestasi';
-        } else if ($spiritual == 'Sangat Baik' && $sosial == 'Perlu Bimbingan' && $akademik == 'Cukup' && $ekstrakurikuler == 'Perlu Bimbingan') {
-            $message = 'Tidak Berprestasi';
-        } else if ($spiritual == 'Sangat Baik' && $sosial == 'Perlu Bimbingan' && $akademik == 'Perlu Bimbingan' && $ekstrakurikuler == 'Sangat Baik') {
-            $message = 'Tidak Berprestasi';
-        } else if ($spiritual == 'Sangat Baik' && $sosial == 'Perlu Bimbingan' && $akademik == 'Perlu Bimbingan' && $ekstrakurikuler == 'Baik') {
-            $message = 'Tidak Berprestasi';
-        } else if ($spiritual == 'Sangat Baik' && $sosial == 'Perlu Bimbingan' && $akademik == 'Perlu Bimbingan' && $ekstrakurikuler == 'Cukup') {
-            $message = 'Tidak Berprestasi';
-        } else if ($spiritual == 'Sangat Baik' && $sosial == 'Perlu Bimbingan' && $akademik == 'Perlu Bimbingan' && $ekstrakurikuler == 'Perlu Bimbingan') {
-            $message = 'Tidak Berprestasi';
+
+        if ($spiritual == 'Sangat Baik') {
+            if ($sosial == 'Sangat Baik') {
+                if ($akademik == 'Sangat Baik') {
+                    if ($ekstrakurikuler == 'Sangat Baik') {
+                        $message = 'Berprestasi';
+                    } else if ($ekstrakurikuler == 'Baik') {
+                        $message = 'Berprestasi';
+                    } else if ($ekstrakurikuler == 'Cukup') {
+                        $message = 'Berprestasi';
+                    } else if ($ekstrakurikuler == 'Perlu Bimbingan') {
+                        $message = 'Tidak Berprestasi';
+                    }
+                } else if ($akademik == 'Baik') {
+                    if ($ekstrakurikuler == 'Sangat Baik') {
+                        $message = 'Berprestasi';
+                    } else if ($ekstrakurikuler == 'Baik') {
+                        $message = 'Berprestasi';
+                    } else if ($ekstrakurikuler == 'Cukup') {
+                        $message = 'Berprestasi';
+                    } else if ($ekstrakurikuler == 'Perlu Bimbingan') {
+                        $message = 'Tidak Berprestasi';
+                    }
+                } else if ($akademik == 'Cukup') {
+                    if ($ekstrakurikuler == 'Sangat Baik') {
+                        $message = 'Berprestasi';
+                    } else if ($ekstrakurikuler == 'Baik') {
+                        $message = 'Berprestasi';
+                    } else if ($ekstrakurikuler == 'Cukup') {
+                        $message = 'Berprestasi';
+                    } else if ($ekstrakurikuler == 'Perlu Bimbingan') {
+                        $message = 'Tidak Berprestasi';
+                    }
+                } else if ($akademik == 'Perlu Bimbingan') {
+                    if ($ekstrakurikuler == 'Sangat Baik') {
+                        $message = 'Tidak Berprestasi';
+                    } else if ($ekstrakurikuler == 'Baik') {
+                        $message = 'Tidak Berprestasi';
+                    } else if ($ekstrakurikuler == 'Cukup') {
+                        $message = 'Tidak Berprestasi';
+                    } else if ($ekstrakurikuler == 'Perlu Bimbingan') {
+                        $message = 'Tidak BerBerprestasi';
+                    }
+                }
+            } else if ($sosial == 'Baik') {
+                if ($akademik == 'Sangat Baik') {
+                    if ($ekstrakurikuler == 'Sangat Baik') {
+                        $message = 'Berprestasi';
+                    } else if ($ekstrakurikuler == 'Baik') {
+                        $message = 'Berprestasi';
+                    } else if ($ekstrakurikuler == 'Cukup') {
+                        $message = 'Berprestasi';
+                    } else if ($ekstrakurikuler == 'Perlu Bimbingan') {
+                        $message = 'Tidak Berprestasi';
+                    }
+                } else if ($akademik == 'Baik') {
+                    if ($ekstrakurikuler == 'Sangat Baik') {
+                        $message = 'Berprestasi';
+                    } else if ($ekstrakurikuler == 'Baik') {
+                        $message = 'Berprestasi';
+                    } else if ($ekstrakurikuler == 'Cukup') {
+                        $message = 'Berprestasi';
+                    } else if ($ekstrakurikuler == 'Perlu Bimbingan') {
+                        $message = 'Tidak Berprestasi';
+                    }
+                } else if ($akademik == 'Cukup') {
+                    if ($ekstrakurikuler == 'Sangat Baik') {
+                        $message = 'Berprestasi';
+                    } else if ($ekstrakurikuler == 'Baik') {
+                        $message = 'Berprestasi';
+                    } else if ($ekstrakurikuler == 'Cukup') {
+                        $message = 'Berprestasi';
+                    } else if ($ekstrakurikuler == 'Perlu Bimbingan') {
+                        $message = 'Tidak Berprestasi';
+                    }
+                } else if ($akademik == 'Perlu Bimbingan') {
+                    if ($ekstrakurikuler == 'Sangat Baik') {
+                        $message = 'Tidak Berprestasi';
+                    } else if ($ekstrakurikuler == 'Baik') {
+                        $message = 'Tidak Berprestasi';
+                    } else if ($ekstrakurikuler == 'Cukup') {
+                        $message = 'Tidak Berprestasi';
+                    } else if ($ekstrakurikuler == 'Perlu Bimbingan') {
+                        $message = 'Tidak Berprestasi';
+                    }
+                }
+            } else if ($sosial == 'Cukup') {
+                if ($akademik == 'Sangat Baik') {
+                    if ($ekstrakurikuler == 'Sangat Baik') {
+                        $message = 'Berprestasi';
+                    } else if ($ekstrakurikuler == 'Baik') {
+                        $message = 'Berprestasi';
+                    } else if ($ekstrakurikuler == 'Cukup') {
+                        $message = 'Berprestasi';
+                    } else if ($ekstrakurikuler == 'Perlu Bimbingan') {
+                        $message = 'Tidak Berprestasi';
+                    }
+                } else if ($akademik == 'Baik') {
+                    if ($ekstrakurikuler == 'Sangat Baik') {
+                        $message = 'Berprestasi';
+                    } else if ($ekstrakurikuler == 'Baik') {
+                        $message = 'Berprestasi';
+                    } else if ($ekstrakurikuler == 'Cukup') {
+                        $message = 'Berprestasi';
+                    } else if ($ekstrakurikuler == 'Perlu Bimbingan') {
+                        $message = 'Tidak Berprestasi';
+                    }
+                } else if ($akademik == 'Cukup') {
+                    if ($ekstrakurikuler == 'Sangat Baik') {
+                        $message = 'Berprestasi';
+                    } else if ($ekstrakurikuler == 'Baik') {
+                        $message = 'Berprestasi';
+                    } else if ($ekstrakurikuler == 'Cukup') {
+                        $message = 'Berprestasi';
+                    } else if ($ekstrakurikuler == 'Perlu Bimbingan') {
+                        $message = 'Tidak Berprestasi';
+                    }
+                } else if ($akademik == 'Perlu Bimbingan') {
+                    if ($ekstrakurikuler == 'Sangat Baik') {
+                        $message = 'Tidak Berprestasi';
+                    } else if ($ekstrakurikuler == 'Baik') {
+                        $message = 'Tidak Berprestasi';
+                    } else if ($ekstrakurikuler == 'Cukup') {
+                        $message = 'Tidak Berprestasi';
+                    } else if ($ekstrakurikuler == 'Perlu Bimbingan') {
+                        $message = 'Tidak Berprestasi';
+                    }
+                }
+            } else if ($sosial == 'Perlu Bimbingan') {
+                if ($akademik == 'Sangat Baik') {
+                    if ($ekstrakurikuler == 'Sangat Baik') {
+                        $message = 'Tidak Berprestasi';
+                    } else if ($ekstrakurikuler == 'Baik') {
+                        $message = 'Tidak Berprestasi';
+                    } else if ($ekstrakurikuler == 'Cukup') {
+                        $message = 'Tidak Berprestasi';
+                    } else if ($ekstrakurikuler == 'Perlu Bimbingan') {
+                        $message = 'Tidak Berprestasi';
+                    }
+                } else if ($akademik == 'Baik') {
+                    if ($ekstrakurikuler == 'Sangat Baik') {
+                        $message = 'Tidak Berprestasi';
+                    } else if ($ekstrakurikuler == 'Baik') {
+                        $message = 'Tidak Berprestasi';
+                    } else if ($ekstrakurikuler == 'Cukup') {
+                        $message = 'Tidak Berprestasi';
+                    } else if ($ekstrakurikuler == 'Perlu Bimbingan') {
+                        $message = 'Tidak Berprestasi';
+                    }
+                } else if ($akademik == 'Cukup') {
+                    if ($ekstrakurikuler == 'Sangat Baik') {
+                        $message = 'Tidak Berprestasi';
+                    } else if ($ekstrakurikuler == 'Baik') {
+                        $message = 'Tidak Berprestasi';
+                    } else if ($ekstrakurikuler == 'Cukup') {
+                        $message = 'Tidak Berprestasi';
+                    } else if ($ekstrakurikuler == 'Perlu Bimbingan') {
+                        $message = 'Tidak Berprestasi';
+                    }
+                } else if ($akademik == 'Perlu Bimbingan') {
+                    if ($ekstrakurikuler == 'Sangat Baik') {
+                        $message = 'Tidak Berprestasi';
+                    } else if ($ekstrakurikuler == 'Baik') {
+                        $message = 'Tidak Berprestasi';
+                    } else if ($ekstrakurikuler == 'Cukup') {
+                        $message = 'Tidak Berprestasi';
+                    } else if ($ekstrakurikuler == 'Perlu Bimbingan') {
+                        $message = 'Tidak Berprestasi';
+                    }
+                }
+            }
+        } else if ($spiritual == 'Baik') {
+            if ($sosial == 'Sangat Baik') {
+                if ($akademik == 'Sangat Baik') {
+                    if ($ekstrakurikuler == 'Sangat Baik') {
+                        $message = 'Berprestasi';
+                    } else if ($ekstrakurikuler == 'Baik') {
+                        $message = 'Berprestasi';
+                    } else if ($ekstrakurikuler == 'Cukup') {
+                        $message = 'Berprestasi';
+                    } else if ($ekstrakurikuler == 'Perlu Bimbingan') {
+                        $message = 'Tidak Berprestasi';
+                    }
+                } else if ($akademik == 'Baik') {
+                    if ($ekstrakurikuler == 'Sangat Baik') {
+                        $message = 'Berprestasi';
+                    } else if ($ekstrakurikuler == 'Baik') {
+                        $message = 'Berprestasi';
+                    } else if ($ekstrakurikuler == 'Cukup') {
+                        $message = 'Berprestasi';
+                    } else if ($ekstrakurikuler == 'Perlu Bimbingan') {
+                        $message = 'Tidak Berprestasi';
+                    }
+                } else if ($akademik == 'Cukup') {
+                    if ($ekstrakurikuler == 'Sangat Baik') {
+                        $message = 'Berprestasi';
+                    } else if ($ekstrakurikuler == 'Baik') {
+                        $message = 'Berprestasi';
+                    } else if ($ekstrakurikuler == 'Cukup') {
+                        $message = 'Berprestasi';
+                    } else if ($ekstrakurikuler == 'Perlu Bimbingan') {
+                        $message = 'Tidak Berprestasi';
+                    }
+                } else if ($akademik == 'Perlu Bimbingan') {
+                    if ($ekstrakurikuler == 'Sangat Baik') {
+                        $message = 'Tidak Berprestasi';
+                    } else if ($ekstrakurikuler == 'Baik') {
+                        $message = 'Tidak Berprestasi';
+                    } else if ($ekstrakurikuler == 'Cukup') {
+                        $message = 'Tidak Berprestasi';
+                    } else if ($ekstrakurikuler == 'Perlu Bimbingan') {
+                        $message = 'Tidak Berprestasi';
+                    }
+                }
+            } else if ($sosial == 'Baik') {
+                if ($akademik == 'Sangat Baik') {
+                    if ($ekstrakurikuler == 'Sangat Baik') {
+                        $message = 'Berprestasi';
+                    } else if ($ekstrakurikuler == 'Baik') {
+                        $message = 'Berprestasi';
+                    } else if ($ekstrakurikuler == 'Cukup') {
+                        $message = 'Berprestasi';
+                    } else if ($ekstrakurikuler == 'Perlu Bimbingan') {
+                        $message = 'Tidak Berprestasi';
+                    }
+                } else if ($akademik == 'Baik') {
+                    if ($ekstrakurikuler == 'Sangat Baik') {
+                        $message = 'Berprestasi';
+                    } else if ($ekstrakurikuler == 'Baik') {
+                        $message = 'Berprestasi';
+                    } else if ($ekstrakurikuler == 'Cukup') {
+                        $message = 'Berprestasi';
+                    } else if ($ekstrakurikuler == 'Perlu Bimbingan') {
+                        $message = 'Tidak Berprestasi';
+                    }
+                } else if ($akademik == 'Cukup') {
+                    if ($ekstrakurikuler == 'Sangat Baik') {
+                        $message = 'Berprestasi';
+                    } else if ($ekstrakurikuler == 'Baik') {
+                        $message = 'Berprestasi';
+                    } else if ($ekstrakurikuler == 'Cukup') {
+                        $message = 'Berprestasi';
+                    } else if ($ekstrakurikuler == 'Perlu Bimbingan') {
+                        $message = 'Tidak Berprestasi';
+                    }
+                } else if ($akademik == 'Perlu Bimbingan') {
+                    if ($ekstrakurikuler == 'Sangat Baik') {
+                        $message = 'Tidak Berprestasi';
+                    } else if ($ekstrakurikuler == 'Baik') {
+                        $message = 'Tidak Berprestasi';
+                    } else if ($ekstrakurikuler == 'Cukup') {
+                        $message = 'Tidak Berprestasi';
+                    } else if ($ekstrakurikuler == 'Perlu Bimbingan') {
+                        $message = 'Tidak Berprestasi';
+                    }
+                }
+            } else if ($sosial == 'Cukup') {
+                if ($akademik == 'Sangat Baik') {
+                    if ($ekstrakurikuler == 'Sangat Baik') {
+                        $message = 'Berprestasi';
+                    } else if ($ekstrakurikuler == 'Baik') {
+                        $message = 'Berprestasi';
+                    } else if ($ekstrakurikuler == 'Cukup') {
+                        $message = 'Berprestasi';
+                    } else if ($ekstrakurikuler == 'Perlu Bimbingan') {
+                        $message = 'Tidak Berprestasi';
+                    }
+                } else if ($akademik == 'Baik') {
+                    if ($ekstrakurikuler == 'Sangat Baik') {
+                        $message = 'Berprestasi';
+                    } else if ($ekstrakurikuler == 'Baik') {
+                        $message = 'Berprestasi';
+                    } else if ($ekstrakurikuler == 'Cukup') {
+                        $message = 'Berprestasi';
+                    } else if ($ekstrakurikuler == 'Perlu Bimbingan') {
+                        $message = 'Tidak Berprestasi';
+                    }
+                } else if ($akademik == 'Cukup') {
+                    if ($ekstrakurikuler == 'Sangat Baik') {
+                        $message = 'Berprestasi';
+                    } else if ($ekstrakurikuler == 'Baik') {
+                        $message = 'Berprestasi';
+                    } else if ($ekstrakurikuler == 'Cukup') {
+                        $message = 'Berprestasi';
+                    } else if ($ekstrakurikuler == 'Perlu Bimbingan') {
+                        $message = 'Tidak Berprestasi';
+                    }
+                } else if ($akademik == 'Perlu Bimbingan') {
+                    if ($ekstrakurikuler == 'Sangat Baik') {
+                        $message = 'Tidak Berprestasi';
+                    } else if ($ekstrakurikuler == 'Baik') {
+                        $message = 'Tidak Berprestasi';
+                    } else if ($ekstrakurikuler == 'Cukup') {
+                        $message = 'Tidak Berprestasi';
+                    } else if ($ekstrakurikuler == 'Perlu Bimbingan') {
+                        $message = 'Tidak Berprestasi';
+                    }
+                }
+            } else if ($sosial == 'Perlu Bimbingan') {
+                if ($akademik == 'Sangat Baik') {
+                    if ($ekstrakurikuler == 'Sangat Baik') {
+                        $message = 'Berprestasi';
+                    } else if ($ekstrakurikuler == 'Baik') {
+                        $message = 'Berprestasi';
+                    } else if ($ekstrakurikuler == 'Cukup') {
+                        $message = 'Berprestasi';
+                    } else if ($ekstrakurikuler == 'Perlu Bimbingan') {
+                        $message = 'Tidak Berprestasi';
+                    }
+                } else if ($akademik == 'Baik') {
+                    if ($ekstrakurikuler == 'Sangat Baik') {
+                        $message = 'Berprestasi';
+                    } else if ($ekstrakurikuler == 'Baik') {
+                        $message = 'Berprestasi';
+                    } else if ($ekstrakurikuler == 'Cukup') {
+                        $message = 'Berprestasi';
+                    } else if ($ekstrakurikuler == 'Perlu Bimbingan') {
+                        $message = 'Tidak Berprestasi';
+                    }
+                } else if ($akademik == 'Cukup') {
+                    if ($ekstrakurikuler == 'Sangat Baik') {
+                        $message = 'Berprestasi';
+                    } else if ($ekstrakurikuler == 'Baik') {
+                        $message = 'Berprestasi';
+                    } else if ($ekstrakurikuler == 'Cukup') {
+                        $message = 'Berprestasi';
+                    } else if ($ekstrakurikuler == 'Perlu Bimbingan') {
+                        $message = 'Tidak Berprestasi';
+                    }
+                } else if ($akademik == 'Perlu Bimbingan') {
+                    if ($ekstrakurikuler == 'Sangat Baik') {
+                        $message = 'Tidak Berprestasi';
+                    } else if ($ekstrakurikuler == 'Baik') {
+                        $message = 'Tidak Berprestasi';
+                    } else if ($ekstrakurikuler == 'Cukup') {
+                        $message = 'Tidak Berprestasi';
+                    } else if ($ekstrakurikuler == 'Perlu Bimbingan') {
+                        $message = 'Tidak Berprestasi';
+                    }
+                }
+            }
+        } else if ($spiritual == 'Cukup') {
+            if ($sosial == 'Sangat Baik') {
+                if ($akademik == 'Sangat Baik') {
+                    if ($ekstrakurikuler == 'Sangat Baik') {
+                        $message = 'Berprestasi';
+                    } else if ($ekstrakurikuler == 'Baik') {
+                        $message = 'Berprestasi';
+                    } else if ($ekstrakurikuler == 'Cukup') {
+                        $message = 'Berprestasi';
+                    } else if ($ekstrakurikuler == 'Perlu Bimbingan') {
+                        $message = 'Tidak Berprestasi';
+                    }
+                } else if ($akademik == 'Baik') {
+                    if ($ekstrakurikuler == 'Sangat Baik') {
+                        $message = 'Berprestasi';
+                    } else if ($ekstrakurikuler == 'Baik') {
+                        $message = 'Berprestasi';
+                    } else if ($ekstrakurikuler == 'Cukup') {
+                        $message = 'Berprestasi';
+                    } else if ($ekstrakurikuler == 'Perlu Bimbingan') {
+                        $message = 'Tidak Berprestasi';
+                    }
+                } else if ($akademik == 'Cukup') {
+                    if ($ekstrakurikuler == 'Sangat Baik') {
+                        $message = 'Berprestasi';
+                    } else if ($ekstrakurikuler == 'Baik') {
+                        $message = 'Berprestasi';
+                    } else if ($ekstrakurikuler == 'Cukup') {
+                        $message = 'Berprestasi';
+                    } else if ($ekstrakurikuler == 'Perlu Bimbingan') {
+                        $message = 'Tidak Berprestasi';
+                    }
+                } else if ($akademik == 'Perlu Bimbingan') {
+                    if ($ekstrakurikuler == 'Sangat Baik') {
+                        $message = 'Tidak Berprestasi';
+                    } else if ($ekstrakurikuler == 'Baik') {
+                        $message = 'Tidak Berprestasi';
+                    } else if ($ekstrakurikuler == 'Cukup') {
+                        $message = 'Tidak Berprestasi';
+                    } else if ($ekstrakurikuler == 'Perlu Bimbingan') {
+                        $message = 'Tidak Berprestasi';
+                    }
+                }
+            } else if ($sosial == 'Baik') {
+                if ($akademik == 'Sangat Baik') {
+                    if ($ekstrakurikuler == 'Sangat Baik') {
+                        $message = 'Berprestasi';
+                    } else if ($ekstrakurikuler == 'Baik') {
+                        $message = 'Berprestasi';
+                    } else if ($ekstrakurikuler == 'Cukup') {
+                        $message = 'Berprestasi';
+                    } else if ($ekstrakurikuler == 'Perlu Bimbingan') {
+                        $message = 'Tidak Berprestasi';
+                    }
+                } else if ($akademik == 'Baik') {
+                    if ($ekstrakurikuler == 'Sangat Baik') {
+                        $message = 'Berprestasi';
+                    } else if ($ekstrakurikuler == 'Baik') {
+                        $message = 'Berprestasi';
+                    } else if ($ekstrakurikuler == 'Cukup') {
+                        $message = 'Berprestasi';
+                    } else if ($ekstrakurikuler == 'Perlu Bimbingan') {
+                        $message = 'Tidak Berprestasi';
+                    }
+                } else if ($akademik == 'Cukup') {
+                    if ($ekstrakurikuler == 'Sangat Baik') {
+                        $message = 'Berprestasi';
+                    } else if ($ekstrakurikuler == 'Baik') {
+                        $message = 'Berprestasi';
+                    } else if ($ekstrakurikuler == 'Cukup') {
+                        $message = 'Berprestasi';
+                    } else if ($ekstrakurikuler == 'Perlu Bimbingan') {
+                        $message = 'Tidak Berprestasi';
+                    }
+                } else if ($akademik == 'Perlu Bimbingan') {
+                    if ($ekstrakurikuler == 'Sangat Baik') {
+                        $message = 'Tidak Berprestasi';
+                    } else if ($ekstrakurikuler == 'Baik') {
+                        $message = 'Tidak Berprestasi';
+                    } else if ($ekstrakurikuler == 'Cukup') {
+                        $message = 'Tidak Berprestasi';
+                    }
+                }
+            } else if ($sosial == 'Cukup') {
+                if ($akademik == 'Sangat Baik') {
+                    if ($ekstrakurikuler == 'Sangat Baik') {
+                        $message = 'Berprestasi';
+                    } else if ($ekstrakurikuler == 'Baik') {
+                        $message = 'Berprestasi';
+                    } else if ($ekstrakurikuler == 'Cukup') {
+                        $message = 'Berprestasi';
+                    } else if ($ekstrakurikuler == 'Perlu Bimbingan') {
+                        $message = 'Tidak Berprestasi';
+                    }
+                } else if ($akademik == 'Baik') {
+                    if ($ekstrakurikuler == 'Sangat Baik') {
+                        $message = 'Berprestasi';
+                    } else if ($ekstrakurikuler == 'Baik') {
+                        $message = 'Berprestasi';
+                    } else if ($ekstrakurikuler == 'Cukup') {
+                        $message = 'Berprestasi';
+                    } else if ($ekstrakurikuler == 'Perlu Bimbingan') {
+                        $message = 'Tidak Berprestasi';
+                    }
+                } else if ($akademik == 'Cukup') {
+                    if ($ekstrakurikuler == 'Sangat Baik') {
+                        $message = 'Berprestasi';
+                    } else if ($ekstrakurikuler == 'Baik') {
+                        $message = 'Berprestasi';
+                    } else if ($ekstrakurikuler == 'Cukup') {
+                        $message = 'Berprestasi';
+                    } else if ($ekstrakurikuler == 'Perlu Bimbingan') {
+                        $message = 'Tidak Berprestasi';
+                    }
+                } else if ($akademik == 'Perlu Bimbingan') {
+                    if ($ekstrakurikuler == 'Sangat Baik') {
+                        $message = 'Tidak Berprestasi';
+                    } else if ($ekstrakurikuler == 'Baik') {
+                        $message = 'Tidak Berprestasi';
+                    } else if ($ekstrakurikuler == 'Cukup') {
+                        $message = 'Tidak Berprestasi';
+                    } else if ($ekstrakurikuler == 'Perlu Bimbingan') {
+                        $message = 'Tidak Berprestasi';
+                    }
+                }
+            } else if ($sosial == 'Perlu Bimbingan') {
+                if ($akademik == 'Sangat Baik') {
+                    if ($ekstrakurikuler == 'Sangat Baik') {
+                        $message = 'Tidak Berprestasi';
+                    } else if ($ekstrakurikuler == 'Baik') {
+                        $message = 'Tidak Berprestasi';
+                    } else if ($ekstrakurikuler == 'Cukup') {
+                        $message = 'Tidak Berprestasi';
+                    } else if ($ekstrakurikuler == 'Perlu Bimbingan') {
+                        $message = 'Tidak Berprestasi';
+                    }
+                } else if ($akademik == 'Baik') {
+                    if ($ekstrakurikuler == 'Sangat Baik') {
+                        $message = 'Tidak Berprestasi';
+                    } else if ($ekstrakurikuler == 'Baik') {
+                        $message = 'Tidak Berprestasi';
+                    } else if ($ekstrakurikuler == 'Cukup') {
+                        $message = 'Tidak Berprestasi';
+                    } else if ($ekstrakurikuler == 'Perlu Bimbingan') {
+                        $message = 'Tidak Berprestasi';
+                    }
+                } else if ($akademik == 'Cukup') {
+                    if ($ekstrakurikuler == 'Sangat Baik') {
+                        $message = 'Tidak Berprestasi';
+                    } else if ($ekstrakurikuler == 'Baik') {
+                        $message = 'Tidak Berprestasi';
+                    } else if ($ekstrakurikuler == 'Cukup') {
+                        $message = 'Tidak Berprestasi';
+                    } else if ($ekstrakurikuler == 'Perlu Bimbingan') {
+                        $message = 'Tidak Berprestasi';
+                    }
+                } else if ($akademik == 'Perlu Bimbingan') {
+                    if ($ekstrakurikuler == 'Sangat Baik') {
+                        $message = 'Tidak Berprestasi';
+                    } else if ($ekstrakurikuler == 'Baik') {
+                        $message = 'Tidak Berprestasi';
+                    } else if ($ekstrakurikuler == 'Cukup') {
+                        $message = 'Tidak Berprestasi';
+                    } else if ($ekstrakurikuler == 'Perlu Bimbingan') {
+                        $message = 'Tidak Berprestasi';
+                    }
+                }
+            }
+        } else if ($spiritual == 'Perlu Bimbingan') {
+            if ($sosial == 'Sangat Baik') {
+                if ($akademik == 'Sangat Baik') {
+                    if ($ekstrakurikuler == 'Sangat Baik') {
+                        $message = 'Tidak Berprestasi';
+                    } else if ($ekstrakurikuler == 'Baik') {
+                        $message = 'Tidak Berprestasi';
+                    } else if ($ekstrakurikuler == 'Cukup') {
+                        $message = 'Tidak Berprestasi';
+                    } else if ($ekstrakurikuler == 'Perlu Bimbingan') {
+                        $message = 'Tidak Berprestasi';
+                    }
+                } else if ($akademik == 'Baik') {
+                    if ($ekstrakurikuler == 'Sangat Baik') {
+                        $message = 'Tidak Berprestasi';
+                    } else if ($ekstrakurikuler == 'Baik') {
+                        $message = 'Tidak Berprestasi';
+                    } else if ($ekstrakurikuler == 'Cukup') {
+                        $message = 'Tidak Berprestasi';
+                    } else if ($ekstrakurikuler == 'Perlu Bimbingan') {
+                        $message = 'Tidak Berprestasi';
+                    }
+                } else if ($akademik == 'Cukup') {
+                    if ($ekstrakurikuler == 'Sangat Baik') {
+                        $message = 'Tidak Berprestasi';
+                    } else if ($ekstrakurikuler == 'Baik') {
+                        $message = 'Tidak Berprestasi';
+                    } else if ($ekstrakurikuler == 'Cukup') {
+                        $message = 'Tidak Berprestasi';
+                    } else if ($ekstrakurikuler == 'Perlu Bimbingan') {
+                        $message = 'Tidak Berprestasi';
+                    }
+                } else if ($akademik == 'Perlu Bimbingan') {
+                    if ($ekstrakurikuler == 'Sangat Baik') {
+                        $message = 'Tidak Berprestasi';
+                    } else if ($ekstrakurikuler == 'Baik') {
+                        $message = 'Tidak Berprestasi';
+                    } else if ($ekstrakurikuler == 'Cukup') {
+                        $message = 'Tidak Berprestasi';
+                    } else if ($ekstrakurikuler == 'Perlu Bimbingan') {
+                        $message = 'Tidak Berprestasi';
+                    }
+                }
+            } else if ($sosial == 'Baik') {
+                if ($akademik == 'Sangat Baik') {
+                    if ($ekstrakurikuler == 'Sangat Baik') {
+                        $message = 'Tidak Berprestasi';
+                    } else if ($ekstrakurikuler == 'Baik') {
+                        $message = 'Tidak Berprestasi';
+                    } else if ($ekstrakurikuler == 'Cukup') {
+                        $message = 'Tidak Berprestasi';
+                    } else if ($ekstrakurikuler == 'Perlu Bimbingan') {
+                        $message = 'Tidak Berprestasi';
+                    }
+                } else if ($akademik == 'Baik') {
+                    if ($ekstrakurikuler == 'Sangat Baik') {
+                        $message = 'Tidak Berprestasi';
+                    } else if ($ekstrakurikuler == 'Baik') {
+                        $message = 'Tidak Berprestasi';
+                    } else if ($ekstrakurikuler == 'Cukup') {
+                        $message = 'Tidak Berprestasi';
+                    } else if ($ekstrakurikuler == 'Perlu Bimbingan') {
+                        $message = 'Tidak Berprestasi';
+                    }
+                } else if ($akademik == 'Cukup') {
+                    if ($ekstrakurikuler == 'Sangat Baik') {
+                        $message = 'Tidak Berprestasi';
+                    } else if ($ekstrakurikuler == 'Baik') {
+                        $message = 'Tidak Berprestasi';
+                    } else if ($ekstrakurikuler == 'Cukup') {
+                        $message = 'Tidak Berprestasi';
+                    } else if ($ekstrakurikuler == 'Perlu Bimbingan') {
+                        $message = 'Tidak Berprestasi';
+                    }
+                } else if ($akademik == 'Perlu Bimbingan') {
+                    if ($ekstrakurikuler == 'Sangat Baik') {
+                        $message = 'Tidak Berprestasi';
+                    } else if ($ekstrakurikuler == 'Baik') {
+                        $message = 'Tidak Berprestasi';
+                    } else if ($ekstrakurikuler == 'Cukup') {
+                        $message = 'Tidak Berprestasi';
+                    } else if ($ekstrakurikuler == 'Perlu Bimbingan') {
+                        $message = 'Tidak Berprestasi';
+                    }
+                }
+            } else if ($sosial == 'Cukup') {
+                if ($akademik == 'Sangat Baik') {
+                    if ($ekstrakurikuler == 'Sangat Baik') {
+                        $message = 'Tidak Berprestasi';
+                    } else if ($ekstrakurikuler == 'Baik') {
+                        $message = 'Tidak Berprestasi';
+                    } else if ($ekstrakurikuler == 'Cukup') {
+                        $message = 'Tidak Berprestasi';
+                    } else if ($ekstrakurikuler == 'Perlu Bimbingan') {
+                        $message = 'Tidak Berprestasi';
+                    }
+                } else if ($akademik == 'Baik') {
+                    if ($ekstrakurikuler == 'Sangat Baik') {
+                        $message = 'Tidak Berprestasi';
+                    } else if ($ekstrakurikuler == 'Baik') {
+                        $message = 'Tidak Berprestasi';
+                    } else if ($ekstrakurikuler == 'Cukup') {
+                        $message = 'Tidak Berprestasi';
+                    } else if ($ekstrakurikuler == 'Perlu Bimbingan') {
+                        $message = 'Tidak Berprestasi';
+                    }
+                } else if ($akademik == 'Cukup') {
+                    if ($ekstrakurikuler == 'Sangat Baik') {
+                        $message = 'Tidak Berprestasi';
+                    } else if ($ekstrakurikuler == 'Baik') {
+                        $message = 'Tidak Berprestasi';
+                    } else if ($ekstrakurikuler == 'Cukup') {
+                        $message = 'Tidak Berprestasi';
+                    } else if ($ekstrakurikuler == 'Perlu Bimbingan') {
+                        $message = 'Tidak Berprestasi';
+                    }
+                } else if ($akademik == 'Perlu Bimbingan') {
+                    if ($ekstrakurikuler == 'Sangat Baik') {
+                        $message = 'Tidak Berprestasi';
+                    } else if ($ekstrakurikuler == 'Baik') {
+                        $message = 'Tidak Berprestasi';
+                    } else if ($ekstrakurikuler == 'Cukup') {
+                        $message = 'Tidak Berprestasi';
+                    } else if ($ekstrakurikuler == 'Perlu Bimbingan') {
+                        $message = 'Tidak Berprestasi';
+                    }
+                }
+            } else if ($sosial == 'Perlu Bimbingan') {
+                if ($akademik == 'Sangat Baik') {
+                    if ($ekstrakurikuler == 'Sangat Baik') {
+                        $message = 'Tidak Berprestasi';
+                    } else if ($ekstrakurikuler == 'Baik') {
+                        $message = 'Tidak Berprestasi';
+                    } else if ($ekstrakurikuler == 'Cukup') {
+                        $message = 'Tidak Berprestasi';
+                    } else if ($ekstrakurikuler == 'Perlu Bimbingan') {
+                        $message = 'Tidak Berprestasi';
+                    }
+                } else if ($akademik == 'Baik') {
+                    if ($ekstrakurikuler == 'Sangat Baik') {
+                        $message = 'Tidak Berprestasi';
+                    } else if ($ekstrakurikuler == 'Baik') {
+                        $message = 'Tidak Berprestasi';
+                    } else if ($ekstrakurikuler == 'Cukup') {
+                        $message = 'Tidak Berprestasi';
+                    } else if ($ekstrakurikuler == 'Perlu Bimbingan') {
+                        $message = 'Tidak Berprestasi';
+                    }
+                } else if ($akademik == 'Cukup') {
+                    if ($ekstrakurikuler == 'Sangat Baik') {
+                        $message = 'Tidak Berprestasi';
+                    } else if ($ekstrakurikuler == 'Baik') {
+                        $message = 'Tidak Berprestasi';
+                    } else if ($ekstrakurikuler == 'Cukup') {
+                        $message = 'Tidak Berprestasi';
+                    } else if ($ekstrakurikuler == 'Perlu Bimbingan') {
+                        $message = 'Tidak Berprestasi';
+                    }
+                } else if ($akademik == 'Perlu Bimbingan') {
+                    if ($ekstrakurikuler == 'Sangat Baik') {
+                        $message = 'Tidak Berprestasi';
+                    } else if ($ekstrakurikuler == 'Baik') {
+                        $message = 'Tidak Berprestasi';
+                    } else if ($ekstrakurikuler == 'Cukup') {
+                        $message = 'Tidak Berprestasi';
+                    } else if ($ekstrakurikuler == 'Perlu Bimbingan') {
+                        $message = 'Tidak Berprestasi';
+                    }
+                }
+            }
         }
 
         return $message;
@@ -229,5 +782,47 @@ class Helper
     {
         $school_year = SchoolYear::get()->unique('name');
         return $school_year;
+    }
+
+    public static function statisticData()
+    {
+        $data_dump = Student::whereHas('value')->with('value')->get();
+
+        // Fuzzy Mamdani
+        $fuzzy = [];
+        foreach ($data_dump as $key => $value) {
+            if ($value->value->evaluation->count() >= 1) {
+
+                // Value
+                $fuzzy[$key]['value'] = $value->value->evaluation;
+
+                // Total
+                $fuzzy[$key]['total'] = ($fuzzy[$key]['value'][0]['value'] + $fuzzy[$key]['value'][1]['value'] + $fuzzy[$key]['value'][2]['value'] + $fuzzy[$key]['value'][3]['value']) / 4;
+            }
+        }
+
+        // Grouping in total
+        $grouping = [];
+        foreach ($fuzzy as $key => $value) {
+            if (in_array($value['total'], array_keys($grouping))) {
+                $grouping[$value['total']]['value'] += 1;
+            } else {
+                $grouping[$value['total']]['value'] = 1;
+            }
+        }
+
+        // desc
+        krsort($grouping);
+
+        // arr key
+        $arr_key = array_keys($grouping);
+
+        // arr value
+        $arr_value = array_column($grouping, 'value');
+
+        // menggabungkan 2 array
+        $arr = array_merge($arr_key, $arr_value);
+
+        return Helper::arrayToString($arr);
     }
 }
