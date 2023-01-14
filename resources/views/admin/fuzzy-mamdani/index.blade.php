@@ -13,7 +13,7 @@ active
 <section class="section">
 
     @component('_card.head')
-    Kelas
+    Perhitungan Fuzzy Mamdani
     @endcomponent
 
     <div class="section-body">
@@ -24,7 +24,6 @@ active
                     <div class="card-header">
                         <h4></h4>
                         <div class="card-header-form">
-                            {!! Helper::btn_create() !!}
                         </div>
                     </div>
                     <div class="card-body">

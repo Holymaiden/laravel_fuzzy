@@ -11,7 +11,7 @@ use Illuminate\Http\Request;
 
 class FuzzyMamdaniController extends Controller
 {
-    protected $response;
+    protected $response, $title;
 
     public function __construct()
     {

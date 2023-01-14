@@ -16,6 +16,8 @@
                 </a>
             </li>
 
+            @if (Auth::user()->role->role == 'A')
+
             <li class="@stack('classes')">
                 <a class="nav-link" href="{{ route('classes') }}">
                     <i class="fas fa-school"></i>
@@ -30,12 +32,16 @@
                 </a>
             </li>
 
+            @endif
+
             <li class="@stack('students')">
                 <a class="nav-link" href="{{ route('students') }}">
                     <i class="fas fa-chalkboard-teacher"></i>
                     <span>Siswa</span>
                 </a>
             </li>
+
+            @if (Auth::user()->role->role == 'A')
 
             <li class="@stack('evaluations')">
                 <a class="nav-link" href="{{ route('evaluations') }}">
@@ -44,6 +50,8 @@
                 </a>
             </li>
 
+            @endif
+
             <li class="@stack('fuzzy-mamdani')">
                 <a class="nav-link" href="{{ route('fuzzy-mamdani') }}">
                     <i class="fas fa-atom"></i>
@@ -51,12 +59,16 @@
                 </a>
             </li>
 
+            @if (Auth::user()->role->role == 'A')
+
             <li class="@stack('users')">
                 <a class="nav-link" href="{{ route('users') }}">
                     <i class="fas fa-users"></i>
                     <span>Users</span>
                 </a>
             </li>
+
+            @endif
         </ul>
 
         <div class="mt-4 mb-4 p-3 hide-sidebar-mini">
