@@ -44,6 +44,10 @@ Route::group(['prefix' => '',  'namespace' => 'App\Http\Controllers\Admin', 'mid
             Route::get('/data', 'FuzzyMamdaniController@data')->name('fuzzy-mamdani.data');
         });
 
+        Route::group(['prefix' => '/profile'], function () {
+            Route::get('/', 'ProfileController@index')->name('profile');
+        });
+
         Route::group(['prefix' => '/school-years'], function () {
             Route::get('/', 'SchoolYearController@index')->name('school-years');
             Route::get('/data', 'SchoolYearController@data')->name('school-years.data');
@@ -70,7 +74,6 @@ Route::group(['prefix' => '',  'namespace' => 'App\Http\Controllers\Admin', 'mid
             Route::get('/{id}/edit', 'StudentController@edit')->name('students.edit');
             Route::put('/{id}', 'StudentController@update')->name('students.update');
             Route::delete('/{id}', 'StudentController@destroy')->name('students.delete');
-            
         });
     });
 });
