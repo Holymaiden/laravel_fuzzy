@@ -70,6 +70,7 @@ Route::group(['prefix' => '',  'namespace' => 'App\Http\Controllers\Admin', 'mid
             Route::get('/{id}/edit', 'StudentController@edit')->name('students.edit');
             Route::put('/{id}', 'StudentController@update')->name('students.update');
             Route::delete('/{id}', 'StudentController@destroy')->name('students.delete');
+            
         });
     });
 });

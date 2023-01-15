@@ -71,7 +71,7 @@ active
                         <h4>Tahun Ajar</h4>
                     </div>
                     <div class="card-body">
-                        {{ Helper::get_data('school_years')->count() }} Semester
+                        {{ Helper::get_data('school_years')->count() }} Semest
                     </div>
                 </div>
             </div>
@@ -132,7 +132,7 @@ active
                     },
                     ticks: {
                         beginAtZero: true,
-                        stepSize: 10
+                        stepSize: 1
                     }
                 }],
                 xAxes: [{
