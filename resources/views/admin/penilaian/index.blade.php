@@ -90,6 +90,7 @@ active
                                         <th scope="col">Nilai Sosial</th>
                                         <th scope="col">Nilai Pengetahuan</th>
                                         <th scope="col">Nilai Keterampilan</th>
+                                        <th scope="col">Penilaian</th>
                                     </tr>
                                 </thead>
                                 <tbody class="datatabel">
@@ -111,209 +112,6 @@ active
                 </div>
             </div>
         </div>
-
-        <div class="row">
-            <div class="col-12 col-md-12 col-lg-12">
-                <div class="card">
-                    <div class="card-header">
-                        <h4>Fuzzifikasi</h4>
-                        <div class="card-header-form">
-                        </div>
-                    </div>
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-4">
-                                <span>Spritual</span>
-                                <canvas id="myChart1" height="170"></canvas>
-                            </div>
-                            <div class="col-4">
-                                <span>Sosial</span>
-                                <canvas id="myChart2" height="170"></canvas>
-                            </div>
-                            <div class="col-4">
-                                <span>Pengetahuan</span>
-                                <canvas id="myChart3" height="170"></canvas>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-6">
-                                <span>Keterampilan</span>
-                                <canvas id="myChart4" height="170"></canvas>
-                            </div>
-                            <div class="col-6">
-                                <span>Output</span>
-                                <canvas id="myChart5" height="170"></canvas>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-12 col-md-12 col-lg-12">
-            <div class="card">
-                <div class="card-header">
-                    <h4>Fuzzifikasi</h4>
-                    <div class="card-header-form">
-                    </div>
-                </div>
-                <div class="card-body">
-
-                    <div class="table-responsive">
-                        <table class="table table-bordered">
-                            <thead>
-                                <tr>
-                                    <th scope="col" rowspan="2" width="8%">No</th>
-                                    <th scope="col" colspan='2' class="text-center">Nilai Spiritual</th>
-                                    <th scope="col" colspan='2' class="text-center">Nilai Sosial</th>
-                                    <th scope="col" colspan="4" class="text-center">Nilai Akademik</th>
-                                    <th scope="col" colspan="4" class="text-center">Nilai Ekstrakurikuler</th>
-                                </tr>
-                                <tr>
-                                    <th scope="col">Sangat Baik</th>
-                                    <th scope="col">Perlu Bimbingan</th>
-                                    <th scope="col">Sangat Baik</th>
-                                    <th scope="col">Perlu Bimbingan</th>
-                                    <th scope="col">Sangat Baik</th>
-                                    <th scope="col">Baik</th>
-                                    <th scope="col">Cukup</th>
-                                    <th scope="col">Perlu Bimbingan</th>
-                                    <th scope="col">Sangat Baik</th>
-                                    <th scope="col">Baik</th>
-                                    <th scope="col">Cukup</th>
-                                    <th scope="col">Perlu Bimbingan</th>
-                                </tr>
-                            </thead>
-                            <tbody class="datatabel2">
-                            </tbody>
-                        </table>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-12 col-md-12 col-lg-12">
-            <div class="card">
-                <div class="card-header">
-                    <h4>Defuzzifikasi</h4>
-                    <div class="card-header-form">
-                    </div>
-                </div>
-                <div class="card-body">
-
-                    <div class="table-responsive">
-                        <table class="table table-bordered">
-                            <thead>
-                                <tr>
-                                    <th scope="col" rowspan="2" width="8%">No</th>
-                                    <th scope="col" colspan="2" class="text-center">R1</th>
-                                    <th scope="col" colspan="2" class="text-center">R2</th>
-                                    <th scope="col" colspan="2" class="text-center">R3</th>
-                                    <th scope="col" colspan="2" class="text-center">R4</th>
-                                </tr>
-                                <tr>
-                                    <th scope="col" class="text-center">a</th>
-                                    <th scope="col" class="text-center">z</th>
-                                    <th scope="col" class="text-center">a</th>
-                                    <th scope="col" class="text-center">z</th>
-                                    <th scope="col" class="text-center">a</th>
-                                    <th scope="col" class="text-center">z</th>
-                                    <th scope="col" class="text-center">a</th>
-                                    <th scope="col" class="text-center">z</th>
-                                </tr>
-                            </thead>
-                            <tbody class="datatabel3">
-                            </tbody>
-                        </table>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-12 col-md-12 col-lg-12">
-            <div class="card">
-                <div class="card-header">
-                    <h4>Defuzzifikasi</h4>
-                    <div class="card-header-form">
-                    </div>
-                </div>
-                <div class="card-body">
-
-                    <div class="table-responsive">
-                        <table class="table table-bordered">
-                            <thead>
-                                <tr>
-                                    <th scope="col" rowspan="2" width="8%">No</th>
-                                    <th scope="col" colspan="2" class="text-center">R5</th>
-                                    <th scope="col" colspan="2" class="text-center">R6</th>
-                                    <th scope="col" colspan="2" class="text-center">R7</th>
-                                    <th scope="col" colspan="2" class="text-center">R8</th>
-                                </tr>
-                                <tr>
-                                    <th scope="col" class="text-center">a</th>
-                                    <th scope="col" class="text-center">z</th>
-                                    <th scope="col" class="text-center">a</th>
-                                    <th scope="col" class="text-center">z</th>
-                                    <th scope="col" class="text-center">a</th>
-                                    <th scope="col" class="text-center">z</th>
-                                    <th scope="col" class="text-center">a</th>
-                                    <th scope="col" class="text-center">z</th>
-                                </tr>
-                            </thead>
-                            <tbody class="datatabel4">
-                            </tbody>
-                        </table>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-12 col-md-12 col-lg-12">
-            <div class="card">
-                <div class="card-header">
-                    <h4>Hasil Akhir</h4>
-                    <div class="card-header-form">
-                    </div>
-                </div>
-                <div class="card-body">
-
-                    <div class="table-responsive">
-                        <table class="table table-bordered">
-                            <thead>
-                                <tr>
-                                    <th scope="col" rowspan="2" width="8%">No</th>
-                                    <th scope="col" rowspan="2" class="text-center">Nama</th>
-                                    <th scope="col" rowspan="2" class="text-center">Rata-Rata</th>
-                                    <th scope="col" colspan="2" class="text-center">Fuzzy Mamdani</th>
-                                    <th scope="col" colspan="2" class="text-center">Fuzzy Sugeno</th>
-                                </tr>
-                                <tr>
-                                    <th scope="col" class="text-center">Nilai</th>
-                                    <th scope="col" class="text-center">Hasil</th>
-                                    <th scope="col" class="text-center">Nilai</th>
-                                    <th scope="col" class="text-center">Hasil</th>
-                                </tr>
-                            </thead>
-                            <tbody class="datatabel5">
-                            </tbody>
-                        </table>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-    </div>
     </div>
 
 </section>
@@ -323,8 +121,6 @@ active
 @endsection
 
 @push('jsScript')
-<script src="{{ url('stisla') }}/node_modules/chart.js/dist/Chart.min.js"></script>
-<script src="{{ url('stisla') }}/component.js"></script>
 @include('admin._layouts.js.js-table')
 
 <script type="text/javascript">
@@ -368,10 +164,6 @@ active
                 datatype: "json",
                 success: function(data) {
                     $(".datatabel").html(data.html);
-                    $(".datatabel2").html(data.html2);
-                    $(".datatabel3").html(data.html3);
-                    $(".datatabel4").html(data.html4);
-                    $(".datatabel5").html(data.html5);
                 }
             });
         }
@@ -440,6 +232,7 @@ active
             window.open(urlx + '/export?cari=' + cari + '&tahun=' + tahun + '&kelas=' + kelas + '&semester=' + semester, '_blank');
 
         });
+
     });
 </script>
 @endpush

@@ -7,5 +7,6 @@
     <td>{{ $v['fuzzy']['sosial'] }}</td>
     <td>{{ $v['fuzzy']['pengetahuan'] }}</td>
     <td>{{ $v['fuzzy']['keterampilan'] }}</td>
+    <td>{{ $v['fuzzy']['sugeno']['hasil'] }}</td>
 </tr>
 @endforeach

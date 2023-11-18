@@ -42,6 +42,13 @@ Route::group(['prefix' => '',  'namespace' => 'App\Http\Controllers\Admin', 'mid
         Route::group(['prefix' => '/fuzzy-mamdani'], function () {
             Route::get('/', 'FuzzyMamdaniController@index')->name('fuzzy-mamdani');
             Route::get('/data', 'FuzzyMamdaniController@data')->name('fuzzy-mamdani.data');
+            Route::get('/export', 'FuzzyMamdaniController@export')->name('fuzzy-mamdani.export');
+        });
+
+        Route::group(['prefix' => '/penilaian'], function () {
+            Route::get('/', 'PenilaianController@index')->name('penilaian');
+            Route::get('/data', 'PenilaianController@data')->name('penilaian.data');
+            Route::get('/export', 'PenilaianController@export')->name('penilaian.export');
         });
 
         Route::group(['prefix' => '/profile'], function () {
@@ -74,6 +81,8 @@ Route::group(['prefix' => '',  'namespace' => 'App\Http\Controllers\Admin', 'mid
             Route::get('/{id}/edit', 'StudentController@edit')->name('students.edit');
             Route::put('/{id}', 'StudentController@update')->name('students.update');
             Route::delete('/{id}', 'StudentController@destroy')->name('students.delete');
+            Route::get('/{id}/eval', 'StudentController@student_evaluation_show')->name('students.student_evaluation_show');
+            Route::put('/{id}/eval', 'StudentController@student_evaluation_update')->name('students.student_evaluation_update');
         });
     });
 });

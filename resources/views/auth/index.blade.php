@@ -94,9 +94,9 @@
               Don't have an account? <a href="auth-register.html">Create One</a>
             </div> --}}
                         <div class="simple-footer">
-                            Copyright &copy; 2021
+                            Copyright &copy; 2023
                             <a href="{{ url('/') }}" target="_blank">
-                                {{ str_replace('_', ' ', config('app.name', 'Dipanegara Computer Club')) }}
+                                {{ str_replace('_', ' ', 'Prestasi') }}
                             </a>
                         </div>
                     </div>

@@ -3,7 +3,7 @@
         <div class="modal-content">
             <form id="formInput1" name="formInput1" action="">
                 @csrf
-                <input type="hidden" name="id" id="formId1">
+                <input type="hidden" class="form-control" name="value_id" id="value_id" />
                 <div class="modal-header">
                     <h5 class="modal-title"> <label id="headForm1"></label> {{ Helper::head('Penilaian Siswa') }}</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -28,11 +28,11 @@
                     </div>
                     <div class="form-row">
                         <div class="form-group col-md-6">
-                            <label>Nilai Akademik</label>
+                            <label>Nilai Pengetahuan</label>
                             <input type="number" class="form-control" name="akademik" id="akademik" required />
                         </div>
                         <div class="form-group col-md-6">
-                            <label>Nilai Ekstrakurikuler</label>
+                            <label>Nilai Keterampilan</label>
                             <input type="number" class="form-control" name="ekstrakulikuler" id="ekstrakulikuler" required />
                         </div>
                     </div>
@@ -40,6 +40,7 @@
                 <div class="modal-footer bg-whitesmoke br">
                     <button type="button" class="btn btn-danger mr-2" data-dismiss="modal">Close</button>
                     <button type="submit" class="btn btn-success" id="saveBtn1" value="create">Save</button>
+                    <button type="submit" class="btn btn-warning" id="updateBtn1" value="update">Update</button>
                 </div>
             </form>
         </div>
@@ -55,6 +56,7 @@
         $('#saveBtn1').show();
         $('#formId1').val(id);
         $('#ajaxModel1').modal('show');
+        $('#updateBtn1').hide();
     }
 
     $('#ekstrakulikuler').on('change', function(event) {
@@ -92,5 +94,35 @@
             $('#spiritual').val(0);
         }
     })
+
+
+    function updatePenilaianForm(id) {
+        let urlx = "{{ $title }}"
+        $.ajax({
+            url: urlx + '/' + id + '/eval',
+            type: "GET",
+            dataType: "JSON",
+            success: function(data) {
+                $('#formInput1').trigger("reset");
+                $("#headForm1").empty();
+                $("#headForm1").append("Form Input");
+                $('#ajaxModel1').modal('show');
+                $('#saveBtn1').hide();
+                $('#updateBtn1').show();
+                $('#value_id').val(data[0].value_id);
+                $('#spiritual').val(data[0].value);
+                $('#sosial').val(data[1].value);
+                $('#akademik').val(data[2].value);
+                $('#ekstrakulikuler').val(data[3].value);
+            },
+            error: function() {
+                iziToast.error({
+                    title: 'Failed,',
+                    message: 'Unable to display data!',
+                    position: 'topRight'
+                });
+            }
+        });
+    }
 </script>
 @endpush

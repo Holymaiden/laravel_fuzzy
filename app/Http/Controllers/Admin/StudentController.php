@@ -123,26 +123,48 @@ class StudentController extends Controller
         }
     }
 
-    // public function importExcel(Request $request)
-    // {
-    //     try {
-    //         $data = Excel::toArray(new ImportStudentEvaluation, $request->file('file'));
-    //         $data = $data[0];
-    //         for ($i = 0; $i < count($data); $i++) {
-    //             for ($j = 0; $j <= 3; $j++) {
-    //                 StudentEvaluation::create([
-    //                     'value_id' => $data[$i][0],
-    //                     'evaluation_id' => $j + 1,
-    //                     'value' => $data[$i][$j + 1],
-    //                 ]);
-    //             }
-    //         }
+    public function importExcel(Request $request)
+    {
+        try {
+            $data = Excel::toArray(new ImportStudentEvaluation, $request->file('file'));
+            $data = $data[0];
+            for ($i = 0; $i < count($data); $i++) {
+                for ($j = 0; $j <= 3; $j++) {
+                    StudentEvaluation::create([
+                        'value_id' => $data[$i][0],
+                        'evaluation_id' => $j + 1,
+                        'value' => $data[$i][$j + 1],
+                    ]);
+                }
+            }
 
 
-    //         return response()->json($data);
-    //     } catch (\Exception $e) {
-    //         $this->response['message'] = $e->getMessage() . ' in file :' . $e->getFile() . ' line: ' . $e->getLine();
-    //         return view('errors.message', ['message' => $this->response]);
-    //     }
-    // }
+            return response()->json($data);
+        } catch (\Exception $e) {
+            $this->response['message'] = $e->getMessage() . ' in file :' . $e->getFile() . ' line: ' . $e->getLine();
+            return view('errors.message', ['message' => $this->response]);
+        }
+    }
+
+    public function student_evaluation_show($id)
+    {
+        try {
+            $data = $this->studentContract->student_evaluation_show($id);
+            return response()->json($data);
+        } catch (\Exception $e) {
+            $this->response['message'] = $e->getMessage() . ' in file :' . $e->getFile() . ' line: ' . $e->getLine();
+            return view('errors.message', ['message' => $this->response]);
+        }
+    }
+
+    public function student_evaluation_update(Request $request, $id)
+    {
+        try {
+            $data = $this->studentContract->student_evaluation_update($request, $id);
+            return response()->json($data);
+        } catch (\Exception $e) {
+            $this->response['message'] = $e->getMessage() . ' in file :' . $e->getFile() . ' line: ' . $e->getLine();
+            return view('errors.message', ['message' => $this->response]);
+        }
+    }
 }

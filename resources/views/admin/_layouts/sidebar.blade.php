@@ -49,22 +49,27 @@
                     <span>Evaluasi</span>
                 </a>
             </li>
-
-            @endif
-
             <li class="@stack('fuzzy-mamdani')">
                 <a class="nav-link" href="{{ route('fuzzy-mamdani') }}">
                     <i class="fas fa-atom"></i>
-                    <span>Fuzzy Mamdani</span>
+                    <span>Penilaian Siswa</span>
                 </a>
             </li>
-
-            @if (Auth::user()->role->role == 'A')
-
             <li class="@stack('users')">
                 <a class="nav-link" href="{{ route('users') }}">
                     <i class="fas fa-users"></i>
                     <span>Users</span>
+                </a>
+            </li>
+
+            @endif
+
+            @if (Auth::user()->role->role != 'A')
+
+            <li class="@stack('penilaian')">
+                <a class="nav-link" href="{{ route('penilaian') }}">
+                    <i class="fab fa-connectdevelop"></i>
+                    <span>Penilaian Siswa</span>
                 </a>
             </li>
 

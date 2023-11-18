@@ -250,6 +250,7 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'Helper' => App\Helpers\Helper::class,
+        'Fuzzy' => App\Helpers\Fuzzy::class,
         'Services' => App\Services\Service::class,
     ])->toArray(),
 

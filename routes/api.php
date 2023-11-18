@@ -15,4 +15,4 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::post('anu/anu', [StudentController::class, 'importExcel']);
+Route::post('anu/anu', [StudentController::class, 'importExcel']);

@@ -17,4 +17,8 @@ interface StudentContract
     public function paginate();
 
     public function evaluation($request);
+
+    public function student_evaluation_show($id);
+
+    public function student_evaluation_update($request, $id);
 }

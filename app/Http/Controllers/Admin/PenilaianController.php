@@ -4,21 +4,19 @@ namespace App\Http\Controllers\Admin;
 
 use App\Export\ExportPenilaian;
 use App\Helpers\Fuzzy;
-use App\Helpers\Helper;
 use App\Http\Controllers\Controller;
 use App\Models\Evaluation;
-use App\Models\Value;
 use App\Models\Student;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 
-class FuzzyMamdaniController extends Controller
+class PenilaianController extends Controller
 {
     protected $response, $title;
 
     public function __construct()
     {
-        $this->title = "fuzzy-mamdani";
+        $this->title = "penilaian";
         // $this->middleware("roles:{$this->title}");
         $this->response = [
             'code' => config('constants.HTTP.CODE.FAILED'),
@@ -101,22 +99,10 @@ class FuzzyMamdaniController extends Controller
 
             $view = view('admin.' . $this->title . '.data', compact('data', 'title'))->with('i', ($request->input('page', 1) -
                 1) * $jml)->render();
-            $view2 = view('admin.' . $this->title . '.data2', compact('data', 'title'))->with('i', ($request->input('page', 1) -
-                1) * $jml)->render();
-            $view3 = view('admin.' . $this->title . '.data3', compact('data', 'title'))->with('i', ($request->input('page', 1) -
-                1) * $jml)->render();
-            $view4 = view('admin.' . $this->title . '.data4', compact('data', 'title'))->with('i', ($request->input('page', 1) -
-                1) * $jml)->render();
-            $view5 = view('admin.' . $this->title . '.data5', compact('data', 'title'))->with('i', ($request->input('page', 1) -
-                1) * $jml)->render();
             return response()->json([
                 "total_page" => $total_page,
                 "total_data" => $total_data,
                 "html"       => $view,
-                "html2"       => $view2,
-                "html3"       => $view3,
-                "html4"       => $view4,
-                "html5"       => $view5,
             ]);
         } catch (\Exception $e) {
             $this->response['message'] = $e->getMessage() . ' in file :' . $e->getFile() . ' line: ' . $e->getLine();
@@ -173,9 +159,7 @@ class FuzzyMamdaniController extends Controller
                     $fuzzy[$key]['sosial'] = $data2['sosial'];
                     $fuzzy[$key]['pengetahuan'] = $data2['pengetahuan'];
                     $fuzzy[$key]['keterampilan'] = $data2['keterampilan'];
-                    $fuzzy[$key]['rata-rata'] = $data2['rata'];
-                    $fuzzy[$key]['mamdani'] = $data2['mamdani']['hasil'];
-                    $fuzzy[$key]['sugeno'] = $data2['sugeno']['hasil'];
+                    $fuzzy[$key]['hasil'] = $data2['sugeno']['hasil'];
                 }
             }
 

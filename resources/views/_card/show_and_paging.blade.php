@@ -11,7 +11,7 @@
             }
         });
 
-        loadpage('', "{{config('constants.PAGINATION')}}");
+        loadpage('', "5");
 
         var $pagination = $('.twbs-pagination');
         var defaultOpts = {
@@ -99,7 +99,7 @@
                 success: function(data) {
                     $('#formInput').trigger("reset");
                     $('#ajaxModel').modal('hide');
-                    loadpage('', "{{config('constants.PAGINATION')}}");
+                    loadpage('', "5");
                     iziToast.success({
                         title: 'Successfull.',
                         message: 'Save it data!',
@@ -133,7 +133,7 @@
                 success: function(data) {
                     $('#formInput').trigger("reset");
                     $('#ajaxModel').modal('hide');
-                    loadpage('', "{{config('constants.PAGINATION')}}");
+                    loadpage('', "5");
                     iziToast.success({
                         title: 'Successfull,',
                         message: 'Update it data!',
@@ -181,7 +181,7 @@
                             type: "DELETE",
                             url: urlx + '/' + id,
                             success: function(data) {
-                                loadpage('', "{{config('constants.PAGINATION')}}");
+                                loadpage('', "5");
                                 iziToast.success({
                                     title: 'Successfull.',
                                     message: 'Delete it data!',

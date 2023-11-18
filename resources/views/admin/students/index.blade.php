@@ -133,7 +133,7 @@ active
             }
         });
 
-        loadpage('', "{{config('constants.PAGINATION')}}", '', '', '');
+        loadpage('', "5", '', '', '');
 
         var $pagination = $('.twbs-pagination');
         var defaultOpts = {
@@ -230,7 +230,7 @@ active
                 success: function(data) {
                     $('#formInput').trigger("reset");
                     $('#ajaxModel').modal('hide');
-                    loadpage('', "{{config('constants.PAGINATION')}}", '', '', '');
+                    loadpage('', "5", '', '', '');
                     iziToast.success({
                         title: 'Successfull.',
                         message: 'Save it data!',
@@ -264,7 +264,7 @@ active
                 success: function(data) {
                     $('#formInput').trigger("reset");
                     $('#ajaxModel').modal('hide');
-                    loadpage('', "{{config('constants.PAGINATION')}}", '', '', '');
+                    loadpage('', "5", '', '', '');
                     iziToast.success({
                         title: 'Successfull,',
                         message: 'Update it data!',
@@ -312,7 +312,7 @@ active
                             type: "DELETE",
                             url: urlx + '/' + id,
                             success: function(data) {
-                                loadpage('', "{{config('constants.PAGINATION')}}", '', '', '');
+                                loadpage('', "5", '', '', '');
                                 iziToast.success({
                                     title: 'Successfull.',
                                     message: 'Delete it data!',
@@ -346,7 +346,7 @@ active
                 success: function(data) {
                     $('#formInput1').trigger("reset");
                     $('#ajaxModel1').modal('hide');
-                    loadpage('', "{{config('constants.PAGINATION')}}", '', '', '');
+                    loadpage('', "5", '', '', '');
                     iziToast.success({
                         title: 'Successfull.',
                         message: 'Save it data!',
@@ -361,6 +361,39 @@ active
                     iziToast.error({
                         title: 'Failed,',
                         message: 'Save it data!',
+                        position: 'topRight',
+                        timeout: 1500
+                    });
+                }
+            });
+        });
+
+        // proses update
+        $('#updateBtn1').click(function(e) {
+            let id = $('#formId1').val();
+            e.preventDefault();
+            $.ajax({
+                data: $('#formInput1').serialize(),
+                url: urlx + '/' + id + '/eval',
+                type: "PUT",
+                dataType: 'json',
+                success: function(data) {
+                    $('#formInput1').trigger("reset");
+                    $('#ajaxModel1').modal('hide');
+                    loadpage('', "5", '', '', '');
+                    iziToast.success({
+                        title: 'Successfull,',
+                        message: 'Update it data!',
+                        position: 'topRight',
+                        timeout: 1500
+                    });
+                },
+                error: function(data) {
+                    $('#formInput1').trigger("reset");
+                    $('#ajaxModel1').modal('hide');
+                    iziToast.error({
+                        title: 'Failed.',
+                        message: 'Update it data!',
                         position: 'topRight',
                         timeout: 1500
                     });

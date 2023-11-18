@@ -33,15 +33,22 @@ class StudentService implements StudentContract
     {
         $input = $request->all();
 
-        $year = SchoolYear::where('name', $input['school_year_id'])->where('semester', $input['semester'])->firstOrFail();
+        $year = SchoolYear::firstOrCreate(['name' => $input['school_year_id']], ['semester' => $input['semester']]);
+
+        $student = Student::create([
+            'name' => $input['name'],
+            'jkl' => $input['jkl'],
+            'nisn' => $input['nisn'],
+            'nis' => $input['nis'],
+        ]);
 
         Value::create([
-            'student_id' => $input['id'],
+            'student_id' => $student->id,
             'school_year_id' => $year->id,
             'class_id' => $input['class_id'],
         ]);
 
-        return $this->contractRepo->store($input);
+        return true;
     }
 
     /**
@@ -59,10 +66,13 @@ class StudentService implements StudentContract
     {
         $input = $request->all();
 
-        $year = SchoolYear::where('name', $input['school_year_id'])->where('semester', $input['semester'])->firstOrFail();
+        $year = SchoolYear::where('name', $input['school_year_id'])->where('semester', $input['semester'])->first();
+        if (!$year) {
+            $year = SchoolYear::create(['name' => $input['school_year_id'], 'semester' => $input['semester']]);
+        }
 
         $value = Value::where('id', $input['idValue'])->first();
-        $value->school_year_id = $year;
+        $value->school_year_id = $year['id'];
         $value->class_id = $input['class_id'];
         $value->save();
 
@@ -74,7 +84,8 @@ class StudentService implements StudentContract
      */
     public function delete($id)
     {
-        return Value::where('id', $id)->delete();
+        Value::where('student_id', $id)->delete();
+        return $this->contractRepo->delete($id);
     }
 
     /**
@@ -99,6 +110,28 @@ class StudentService implements StudentContract
             $data['value'] = $eval[$i];
 
             StudentEvaluation::create($data);
+        }
+
+        return true;
+    }
+
+    public function student_evaluation_show($id)
+    {
+        return Student::find($id)->value->evaluation;
+    }
+
+    public function student_evaluation_update($request, $id)
+    {
+        $input = $request->all();
+
+        $eval = [$input['spiritual'], $input['sosial'], $input['akademik'], $input['ekstrakulikuler']];
+        $data = [];
+        for ($i = 0; $i < 4; $i++) {
+            $data['value_id'] = $input['value_id'];
+            $data['evaluation_id'] = $i + 1;
+            $data['value'] = $eval[$i];
+
+            StudentEvaluation::where('value_id', $input['value_id'])->where('evaluation_id', $i + 1)->update($data);
         }
 
         return true;

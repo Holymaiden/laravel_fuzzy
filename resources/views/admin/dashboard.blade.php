@@ -77,71 +77,10 @@ active
             </div>
         </div>
     </div>
-    <div class="row">
-        <div class="col-12">
-            <div class="card">
-                <div class="card-header">
-                    <h4>Statistics</h4>
-                </div>
-                <div class="card-body">
-                    <canvas id="myChart2" height="180"></canvas>
-                </div>
-            </div>
-        </div>
-    </div>
 </section>
 
 @endsection
 
 @push('jsScript')
 @include('admin._layouts.js.js')
-<script>
-    data = "{{ Helper::statisticData() }}";
-    // string to array
-    data = data.split(',');
-
-    // slice array into 2 array in total
-    label = data.slice(0, data.length / 2);
-    dataset = data.slice(data.length / 2, data.length);
-
-    var ctx = document.getElementById("myChart2").getContext('2d');
-    var myChart = new Chart(ctx, {
-        type: 'bar',
-        data: {
-            labels: label,
-            datasets: [{
-                label: 'Statistics',
-                data: dataset,
-                borderWidth: 2,
-                backgroundColor: 'rgba(63,82,227,.8)',
-                borderColor: 'transparent',
-                borderWidth: 0,
-                pointBackgroundColor: '#999',
-                pointRadius: 4,
-            }]
-        },
-        options: {
-            legend: {
-                display: false
-            },
-            scales: {
-                yAxes: [{
-                    gridLines: {
-                        drawBorder: false,
-                        color: '#f2f2f2',
-                    },
-                    ticks: {
-                        beginAtZero: true,
-                        stepSize: 1
-                    }
-                }],
-                xAxes: [{
-                    gridLines: {
-                        display: false
-                    }
-                }]
-            },
-        }
-    });
-</script>
 @endpush

@@ -18,6 +18,6 @@ class Student extends Model
 
     public function value()
     {
-        return $this->hasOne('App\Models\Value', 'student_id', 'id')->orderBy('id', 'desc');
+        return $this->hasOne('App\Models\Value', 'student_id', 'id');
     }
 }

@@ -227,5 +227,4 @@ active
     });
 </script>
 
-
 @endpush
